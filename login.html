@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var s = localStorage.getItem('fanhub-theme');
+    if (s === 'light') document.documentElement.classList.add('light-mode');
+    else if (s === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/auth.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+<body class="auth-body">
+
+<!-- background video (falls back to gradient if missing) -->
+<div class="auth-bg">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="assets/videos/auth-bg.mp4" type="video/mp4" />
+  </video>
+  <span class="auth-bg__overlay"></span>
+  <span class="auth-bg__orb auth-bg__orb--1"></span>
+  <span class="auth-bg__orb auth-bg__orb--2"></span>
+</div>
+
+<!-- back link -->
+<a href="index.html" class="auth-back">
+  <i class="fas fa-arrow-left"></i>
+  <span>Back to home</span>
+</a>
+
+<main class="auth-shell">
+
+  <div class="auth-card">
+
+    <!-- brand -->
+    <a href="index.html" class="auth-brand">
+      <span class="auth-brand__mark">F</span>
+      <span class="auth-brand__name">Fan Hub <em>Plus</em></span>
+    </a>
+
+    <header class="auth-head">
+      <h1>Welcome back</h1>
+      <p>Sign in to keep exploring your fandoms.</p>
+    </header>
+
+    <!-- JS error alert (hidden by default) -->
+    <div class="auth-alert" id="formError" role="alert" style="display:none;">
+      <i class="fas fa-circle-exclamation"></i>
+      <span id="formErrorText">Something went wrong.</span>
+    </div>
+
+    <form action="#" method="POST" class="auth-form" id="loginForm" novalidate>
+
+      <div class="auth-field">
+        <label for="email">Email address</label>
+        <div class="auth-input">
+          <i class="fa-regular fa-envelope"></i>
+          <input type="email"
+                 id="email"
+                 name="email"
+                 placeholder="you@example.com"
+                 autocomplete="email"
+                 required />
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <div class="auth-label-row">
+          <label for="password">Password</label>
+          <a href="forgot-password.html" class="auth-link-sm">Forgot?</a>
+        </div>
+        <div class="auth-input">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password"
+                 id="password"
+                 name="password"
+                 placeholder="Enter your password"
+                 autocomplete="current-password"
+                 required />
+          <button type="button" class="auth-toggle-pw" data-target="password" aria-label="Show password">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <label class="auth-check">
+        <input type="checkbox" name="remember" id="remember" checked />
+        <span class="auth-check__box"><i class="fa-solid fa-check"></i></span>
+        <span>Keep me signed in</span>
+      </label>
+
+      <button type="submit" class="auth-btn" id="authBtn">
+        <span class="auth-btn__label">
+          Sign In
+          <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="auth-btn__spinner" aria-hidden="true"></span>
+      </button>
+
+    </form>
+
+    <div class="auth-divider"><span>or continue with</span></div>
+
+    <div class="auth-socials">
+      <button type="button" class="auth-social" aria-label="Continue with Google">
+        <i class="fab fa-google"></i>
+        <span>Google</span>
+      </button>
+      <button type="button" class="auth-social" aria-label="Continue with Apple">
+        <i class="fab fa-apple"></i>
+        <span>Apple</span>
+      </button>
+    </div>
+
+    <footer class="auth-foot">
+      <p>New to Fan Hub Plus?
+        <a href="register.html">Create an account</a>
+      </p>
+    </footer>
+
+  </div>
+
+</main>
+
+<script src="assets/js/auth.js"></script>
+</body>
+</html>

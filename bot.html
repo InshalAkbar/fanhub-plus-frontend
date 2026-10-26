@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>AI Assistant — Fan Hub Plus</title>
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('fanhub-theme');
+      if (saved === 'light') document.documentElement.classList.add('light-mode');
+      else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+        document.documentElement.classList.add('light-mode');
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/css/bot.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+<body class="ai-app">
+
+<div class="ai-progress" id="aiProgress" aria-hidden="true"></div>
+
+<header class="ai-header" id="aiHeader">
+  <div class="ai-header__inner">
+    <a href="index.html" class="ai-brand">
+      <span class="ai-brand__mark-wrap">
+        <span class="ai-brand__ring" aria-hidden="true"></span>
+        <span class="ai-brand__mark" aria-hidden="true"></span>
+      </span>
+      <span class="ai-brand__name">Fan Hub</span>
+      <span class="ai-brand__status">AI</span>
+    </a>
+
+    <nav class="ai-nav" aria-label="Primary">
+      <a href="index.html" class="ai-nav__link is-active">
+        <i class="fas fa-house"></i>
+        <span>Home</span>
+      </a>
+    </nav>
+
+    <div class="ai-actions">
+      <button class="ai-icon-btn" id="aiSettingsBtn" type="button" aria-label="Settings">
+        <i class="fas fa-sliders"></i>
+      </button>
+
+      <button class="ai-theme" id="aiThemeBtn" type="button"
+              aria-label="Switch theme" aria-pressed="false">
+        <span class="ai-theme__icon ai-theme__icon--sun"  aria-hidden="true"><i class="fas fa-sun"></i></span>
+        <span class="ai-theme__icon ai-theme__icon--moon" aria-hidden="true"><i class="fas fa-moon"></i></span>
+      </button>
+
+      <button class="ai-profile" aria-label="Account" type="button">
+        <span class="ai-profile__inner">A</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="ai-shell">
+
+  <aside class="ai-side" id="aiSide">
+    <div class="ai-side__head">
+      <div class="ai-side__brand">
+        <span class="ai-side__brand-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+        <div>
+          <div class="ai-side__brand-title">Fan Hub AI</div>
+          <div class="ai-side__brand-sub">Your fandom companion</div>
+        </div>
+      </div>
+      <button class="ai-side__close" id="aiSideClose" type="button" aria-label="Close sidebar">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="ai-side__scroll hide-scrollbar">
+
+      <button class="ai-new-chat" id="aiNewChatBtn" type="button">
+        <i class="fas fa-plus"></i>
+        <span>New chat</span>
+      </button>
+
+      <div class="ai-side__section">
+        <div class="ai-side__label">
+          <i class="fas fa-circle-info"></i> Status
+        </div>
+        <div class="ai-status" id="aiStatusCard">
+          <div class="ai-status__dot" id="aiStatusDot"></div>
+          <div class="ai-status__body">
+            <div class="ai-status__value" id="aiStatusText">Checking…</div>
+            <div class="ai-status__label">Groq Connection</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-side__section">
+        <div class="ai-side__label">
+          <i class="fas fa-bolt"></i> Quick prompts
+        </div>
+        <div class="ai-prompts" id="aiPrompts"></div>
+      </div>
+
+      <div class="ai-side__section">
+        <div class="ai-side__label">
+          <i class="fas fa-toolbox"></i> Tools
+        </div>
+        <button class="ai-tool" id="aiClearChatBtn" type="button">
+          <i class="fas fa-trash-can"></i>
+          <span>Clear conversation</span>
+        </button>
+        <button class="ai-tool" id="aiExportBtn" type="button">
+          <i class="fas fa-download"></i>
+          <span>Export chat</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="ai-side__foot">
+      <i class="fas fa-lock"></i>
+      <span>API key stored locally</span>
+    </div>
+  </aside>
+
+  <section class="ai-main">
+    <div class="ai-main__topbar">
+      <button class="ai-burger" id="aiSideToggle" type="button" aria-label="Open sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="ai-main__title">
+        <span class="ai-main__title-orb"></span>
+        <div>
+          <div class="ai-main__title-main">Fan Hub Assistant</div>
+          <div class="ai-main__title-sub" id="aiTitleSub">Online · Ready</div>
+        </div>
+      </div>
+
+      <button class="ai-clear-mini" id="aiClearMini" type="button" aria-label="Clear chat">
+        <i class="fas fa-rotate-left"></i>
+      </button>
+    </div>
+
+    <div class="ai-messages hide-scrollbar" id="aiMessages"></div>
+
+    <div class="ai-composer">
+      <div class="ai-composer__wrap">
+        <textarea
+          id="aiInput"
+          class="ai-composer__input"
+          placeholder="Ask anything… (Shift + Enter for new line)"
+          rows="1"
+          autocomplete="off"
+          spellcheck="false"
+        ></textarea>
+        <button class="ai-composer__send" id="aiSendBtn" type="button" aria-label="Send" disabled>
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </div>
+      <div class="ai-composer__meta">
+        <span><i class="fas fa-shield-halved"></i> Groq-powered · key stays on your device</span>
+        <span id="aiCharCount">0 / 2000</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="ai-overlay" id="aiOverlay" aria-hidden="true"></div>
+
+<div class="ai-modal" id="aiSettingsModal" aria-hidden="true">
+  <div class="ai-modal__overlay" data-modal-close></div>
+  <div class="ai-modal__panel" role="dialog" aria-modal="true">
+    <button class="ai-modal__close" data-modal-close aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="ai-modal__icon">
+      <i class="fas fa-bolt"></i>
+    </div>
+
+    <h2 class="ai-modal__title">Groq Connection</h2>
+    <p class="ai-modal__sub">
+      Your Groq API key is already configured. You can change it here anytime — it stays on your device.
+    </p>
+
+    <div class="ai-modal__body">
+      <label class="ai-field">
+        <span class="ai-field__label">Groq API Key</span>
+        <div class="ai-field__row">
+          <input type="password" id="aiApiKeyInput" class="ai-field__input"
+                 placeholder="gsk_..." autocomplete="off" spellcheck="false" />
+          <button type="button" class="ai-field__eye" id="aiKeyToggle" aria-label="Show key">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <span class="ai-field__hint">
+          Get a free key at
+          <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com</a>
+        </span>
+      </label>
+
+      <label class="ai-field">
+        <span class="ai-field__label">Model</span>
+        <select id="aiModelSelect" class="ai-field__select">
+          <option value="openai/gpt-oss-120b">GPT-OSS 120B · recommended</option>
+          <option value="openai/gpt-oss-20b">GPT-OSS 20B · lightweight</option>
+          <option value="qwen/qwen3-32b">Qwen 3 32B · fast</option>
+          <option value="moonshotai/kimi-k2-instruct-0905">Kimi K2 Instruct · best reasoning</option>
+        </select>
+      </label>
+
+      <div class="ai-toggle-row">
+        <div>
+          <div class="ai-toggle-row__title">Offline fallback</div>
+          <div class="ai-toggle-row__desc">If the API is unreachable, use the built-in knowledge base.</div>
+        </div>
+        <label class="ai-switch">
+          <input type="checkbox" id="aiOfflineToggle" checked />
+          <span class="ai-switch__track"><span class="ai-switch__thumb"></span></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="ai-modal__foot">
+      <button class="ai-btn ai-btn--ghost" id="aiRemoveKeyBtn" type="button">Remove key</button>
+      <button class="ai-btn ai-btn--primary" id="aiSaveKeyBtn" type="button">
+        <i class="fas fa-check"></i> Save &amp; Connect
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/js/bot.js" defer></script>
+</body>
+</html>

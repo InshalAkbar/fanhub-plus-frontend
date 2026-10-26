@@ -1,0 +1,75 @@
+body.admin-body {
+  min-height: 100vh;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg);
+}
+
+.content {
+  flex: 1;
+  padding: 26px 32px 40px;
+  min-width: 0;
+}
+
+/* breadcrumbs */
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--txt-3);
+  margin-bottom: 20px;
+}
+
+.crumbs a {
+  color: var(--txt-2);
+}
+
+.crumbs a:hover {
+  color: var(--accent-h);
+}
+
+.crumbs i {
+  font-size: 9px;
+  opacity: .55;
+}
+
+.crumbs span {
+  color: var(--txt);
+}
+
+/* page header */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.page-title {
+  font-size: 25px;
+  margin-bottom: 6px;
+}
+
+.page-sub {
+  font-size: 14px;
+  color: var(--txt-2);
+}
+
+.page-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Settings · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-settings.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item is-active" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Settings</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Settings</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Settings</h2>
+    <p class="page-sub">Platform configuration and preferences.</p>
+  </div>
+</div>
+
+<div class="settings-layout">
+
+  <!-- tabs -->
+  <aside class="settings-tabs">
+    <button class="settings-tab is-active" data-tab="general">
+      <i class="fa-solid fa-sliders"></i> General
+    </button>
+    <button class="settings-tab" data-tab="users">
+      <i class="fa-solid fa-users"></i> Users
+    </button>
+    <button class="settings-tab" data-tab="content">
+      <i class="fa-solid fa-rectangle-list"></i> Content
+    </button>
+    <button class="settings-tab" data-tab="advanced">
+      <i class="fa-solid fa-gear"></i> Advanced
+    </button>
+  </aside>
+
+  <!-- panels -->
+  <div class="settings-main">
+
+    <form id="settingsForm" data-static="1" data-action="">
+
+      <!-- general -->
+      <div class="settings-panel is-active" data-panel="general">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Site Identity</h3>
+              <p class="panel-sub">Basic information shown across the platform</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="field">
+              <label for="site_name">Site name</label>
+              <input class="input" id="site_name" name="site_name" type="text"
+                     value="Fan Hub Plus">
+            </div>
+            <div class="field">
+              <label for="site_tagline">Tagline</label>
+              <input class="input" id="site_tagline" name="site_tagline" type="text"
+                     value="Your fandom. Your hub.">
+            </div>
+            <div class="field">
+              <label for="contact_email">Contact email</label>
+              <input class="input" id="contact_email" name="contact_email" type="email"
+                     value="admin@fanhubplus.com">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- users -->
+      <div class="settings-panel" data-panel="users">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">User Settings</h3>
+              <p class="panel-sub">Registration and permissions</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <label class="switch-row">
+              <div>
+                <strong>Allow new signups</strong>
+                <span>Visitors can create accounts</span>
+              </div>
+              <input type="checkbox" name="allow_signups" checked>
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+
+            <label class="switch-row">
+              <div>
+                <strong>Require admin approval</strong>
+                <span>New accounts need approval before activation</span>
+              </div>
+              <input type="checkbox" name="require_approval" >
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="settings-panel" data-panel="content">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Content Settings</h3>
+              <p class="panel-sub">Pagination and display options</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="field">
+              <label for="items_per_page">Items per page</label>
+              <select class="input" id="items_per_page" name="items_per_page">
+                                  <option value="10" >
+                    10
+                  </option>
+                                  <option value="15" selected>
+                    15
+                  </option>
+                                  <option value="20" >
+                    20
+                  </option>
+                                  <option value="25" >
+                    25
+                  </option>
+                                  <option value="50" >
+                    50
+                  </option>
+                              </select>
+            </div>
+            <div class="field">
+              <label for="default_theme">Default theme</label>
+              <select class="input" id="default_theme" name="default_theme">
+                <option value="dark" selected>Dark</option>
+                <option value="light" >Light</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- advanced -->
+      <div class="settings-panel" data-panel="advanced">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3 class="panel-title">Advanced</h3>
+              <p class="panel-sub">Use with caution</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <label class="switch-row">
+              <div>
+                <strong>Maintenance mode</strong>
+                <span>Public site will show maintenance page</span>
+              </div>
+              <input type="checkbox" name="maintenance_mode" >
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- save -->
+      <div class="settings-actions">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa-solid fa-check"></i>
+          <span>Save Changes</span>
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-settings.js"></script>
+</body></html>

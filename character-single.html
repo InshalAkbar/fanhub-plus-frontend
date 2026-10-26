@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Character Profile | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('fanhub-theme');
+    if (saved === 'light') document.documentElement.classList.add('light-mode');
+    else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/shared.css" />
+<link rel="stylesheet" href="assets/css/character-single.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+
+<link rel="stylesheet" href="assets/css/bot-widget.css" />
+<script src="assets/js/bot-widget.js" defer></script>
+
+<body class="fh-app fh-char-single-page">
+
+<div class="fh-progress" id="fhProgressBar" aria-hidden="true"></div>
+
+
+<header class="fh-navbar" id="fhNavbar">
+  <div class="fh-navbar__inner" id="fhNavbarInner">
+    <span class="fh-navbar__glow" aria-hidden="true"></span>
+    <span class="fh-navbar__edge" aria-hidden="true"></span>
+    <span class="fh-navbar__particles" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>
+
+    <a href="index.html" class="fh-brand">
+      <span class="fh-brand__mark-wrap">
+        <span class="fh-brand__ring" aria-hidden="true"></span>
+        <span class="fh-brand__mark" aria-hidden="true"></span>
+      </span>
+      <span class="fh-brand__name">Fan Hub Plus</span>
+      <span class="fh-brand__status">Live</span>
+    </a>
+
+    <nav class="fh-nav" id="fhNav" aria-label="Primary">
+      <span class="fh-nav__pill" id="fhNavPill" aria-hidden="true"></span>
+
+      <a href="index.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Home
+      </a>
+
+      <a href="movies.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Movies
+      </a>
+
+      <a href="tv-shows.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> TV Series
+      </a>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="categories">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Categories
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="anime.html" class="fh-dropdown__item"><i class="fas fa-dragon"></i> Anime</a>
+          <a href="gaming.html" class="fh-dropdown__item"><i class="fas fa-gamepad"></i> Gaming</a>
+          <a href="kpop.html" class="fh-dropdown__item"><i class="fas fa-music"></i> K-Pop</a>
+          <a href="comics.html" class="fh-dropdown__item"><i class="fas fa-book-open"></i> Comics</a>
+          <a href="manga.html" class="fh-dropdown__item"><i class="fas fa-scroll"></i> Manga</a>
+          <a href="cosplay.html" class="fh-dropdown__item"><i class="fas fa-user-ninja"></i> Cosplay</a>
+        
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="genre">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Genre
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown fh-dropdown--grid" role="menu" id="fhGenreDropdown">
+          <a href="fictional.html" class="fh-dropdown__item"><i class="fas fa-hat-wizard"></i> Fictional</a>
+          <a href="non-fictional.html" class="fh-dropdown__item"><i class="fas fa-book"></i> Non-Fictional</a>
+          <a href="crime.html" class="fh-dropdown__item"><i class="fas fa-magnifying-glass"></i> Crime</a>
+          <a href="thriller.html" class="fh-dropdown__item"><i class="fas fa-mask"></i> Thriller</a>
+          <a href="sci-fi.html" class="fh-dropdown__item"><i class="fas fa-satellite"></i> Sci-Fi</a>
+          <a href="action.html" class="fh-dropdown__item"><i class="fas fa-hand-fist"></i> Action</a>
+          <a href="adventure.html" class="fh-dropdown__item"><i class="fas fa-compass"></i> Adventure</a>
+          <a href="comedy.html" class="fh-dropdown__item"><i class="fas fa-face-laugh"></i> Comedy</a>
+          <a href="horror.html" class="fh-dropdown__item"><i class="fas fa-ghost"></i> Horror</a>
+          <a href="drama.html" class="fh-dropdown__item"><i class="fas fa-masks-theater"></i> Drama</a>
+          <a href="romance.html" class="fh-dropdown__item"><i class="fas fa-heart"></i> Romance</a>
+          <a href="mystery.html" class="fh-dropdown__item"><i class="fas fa-eye"></i> Mystery</a>
+        </div>
+      </div>
+
+      <a href="characters.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Characters
+      </a>
+
+  
+
+      
+    </nav>
+
+    <div class="fh-nav-actions">
+      <div class="fh-search-wrap" id="fhSearchWrap">
+        <div class="fh-search-inline">
+          <i class="fas fa-magnifying-glass fh-search-inline__icon" aria-hidden="true"></i>
+          <input type="text" id="fhSearchInput" class="fh-search-inline__input"
+                 placeholder="Search..." autocomplete="off"
+                 aria-label="Search movies, series, anime" />
+          <kbd class="fh-search-inline__kbd">⌘K</kbd>
+        </div>
+        <div class="fh-search-results hide-scrollbar" id="fhSearchResults" role="listbox"></div>
+      </div>
+
+      <button class="fh-theme-toggle" id="fhThemeToggle" type="button"
+              aria-label="Switch to light mode" aria-pressed="false">
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--sun" aria-hidden="true"><i class="fas fa-sun"></i></span>
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--moon" aria-hidden="true"><i class="fas fa-moon"></i></span>
+      </button>
+
+      <a href="login.html" class="fh-icon-btn fh-profile-btn" aria-label="Sign in">
+        <span class="fh-profile-btn__inner">A</span>
+      </a>
+    </div>
+
+    <button class="fh-menu-toggle" id="fhMenuToggle" aria-label="Toggle menu"
+            aria-expanded="false" aria-controls="fhMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="fh-mobile-menu" id="fhMobileMenu">
+
+    <a href="index.html" class="fh-mobile-menu__link">Home</a>
+    <a href="movies.html" class="fh-mobile-menu__link">Movies</a>
+    <a href="tv-shows.html" class="fh-mobile-menu__link">TV Series</a>
+    <a href="characters.html" class="fh-mobile-menu__link">Characters</a>
+
+    <div class="fh-mobile-menu__group">
+      <div class="fh-mobile-menu__label">Categories</div>
+      <a href="anime.html" class="fh-mobile-menu__sub">Anime</a>
+      <a href="gaming.html" class="fh-mobile-menu__sub">Gaming</a>
+      <a href="kpop.html" class="fh-mobile-menu__sub">K-Pop</a>
+      <a href="comics.html" class="fh-mobile-menu__sub">Comics</a>
+      <a href="manga.html" class="fh-mobile-menu__sub">Manga</a>
+      <a href="cosplay.html" class="fh-mobile-menu__sub">Cosplay</a>
+    </div>
+
+    <div class="fh-mobile-menu__group">
+      <div class="fh-mobile-menu__label">Genres</div>
+      <a href="action.html" class="fh-mobile-menu__sub">Action</a>
+      <a href="drama.html" class="fh-mobile-menu__sub">Drama</a>
+      <a href="thriller.html" class="fh-mobile-menu__sub">Thriller</a>
+      <a href="romance.html" class="fh-mobile-menu__sub">Romance</a>
+      <a href="mystery.html" class="fh-mobile-menu__sub">Mystery</a>
+      <a href="horror.html" class="fh-mobile-menu__sub">Horror</a>
+    </div>
+
+    <a href="login.html" class="fh-cta fh-cta--full">Sign In</a>
+  </div>
+</header>
+
+  <section class="fh-cs__hero">
+    <div class="fh-cs__hero-bg" id="fhCsHeroBg" aria-hidden="true"></div>
+    <div class="fh-cs__hero-overlay" aria-hidden="true"></div>
+
+    <div class="fh-cs__hero-inner">
+      <div class="fh-cs__portrait-wrap">
+        <div class="fh-cs__portrait" id="fhCsPortrait">
+          <span id="fhCsPortraitInitial">E</span>
+        </div>
+        <div class="fh-cs__portrait-ring" aria-hidden="true"></div>
+      </div>
+
+      <div class="fh-cs__hero-info">
+        <div class="fh-cs__hero-tags">
+          <span class="fh-cs__tag fh-cs__tag--fandom" id="fhCsFandom">
+            <i class="fas fa-dragon"></i> Attack on Titan
+          </span>
+          <span class="fh-cs__tag fh-cs__tag--role" id="fhCsRole">
+            Protagonist
+          </span>
+          <span class="fh-cs__tag fh-cs__tag--cat" id="fhCsCategory">
+            <i class="fas fa-tag"></i> Anime
+          </span>
+        </div>
+
+        <h1 class="fh-cs__name" id="fhCsName">Eren Yeager</h1>
+        <p class="fh-cs__subtitle" id="fhCsSubtitle">The Attack Titan · Survey Corps</p>
+
+        <p class="fh-cs__desc" id="fhCsDesc">
+          A young soldier who vows to exterminate all Titans after his hometown is destroyed.
+        </p>
+
+        <div class="fh-cs__hero-actions">
+          <button class="fh-cs__btn fh-cs__btn--primary" id="fhCsBookmarkBtn" type="button">
+            <i class="far fa-bookmark"></i> <span>Bookmark</span>
+          </button>
+          <button class="fh-cs__btn fh-cs__btn--ghost" id="fhCsShareBtn" type="button">
+            <i class="fas fa-share-nodes"></i> Share
+          </button>
+          <a href="fan-submit.html" class="fh-cs__btn fh-cs__btn--ghost">
+            <i class="fas fa-plus"></i> Suggest Edit
+          </a>
+        </div>
+
+        <div class="fh-cs__hero-meta">
+          <div class="fh-cs__meta-item">
+            <i class="fas fa-star"></i>
+            <div>
+              <div class="fh-cs__meta-value">9.0</div>
+              <div class="fh-cs__meta-label">Rating</div>
+            </div>
+          </div>
+          <div class="fh-cs__meta-item">
+            <i class="fas fa-eye"></i>
+            <div>
+              <div class="fh-cs__meta-value">12.4K</div>
+              <div class="fh-cs__meta-label">Views</div>
+            </div>
+          </div>
+          <div class="fh-cs__meta-item">
+            <i class="fas fa-heart"></i>
+            <div>
+              <div class="fh-cs__meta-value">892</div>
+              <div class="fh-cs__meta-label">Favorites</div>
+            </div>
+          </div>
+          <div class="fh-cs__meta-item">
+            <i class="fas fa-tv"></i>
+            <div>
+              <div class="fh-cs__meta-value">87</div>
+              <div class="fh-cs__meta-label">Episodes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fh-cs__tabs-wrap">
+    <div class="fh-cs__tabs" role="tablist">
+      <button class="fh-cs__tab is-active" data-tab="bio" role="tab">
+        <i class="fas fa-book-open"></i> Biography
+      </button>
+      <button class="fh-cs__tab" data-tab="timeline" role="tab">
+        <i class="fas fa-timeline"></i> Timeline
+      </button>
+      <button class="fh-cs__tab" data-tab="abilities" role="tab">
+        <i class="fas fa-bolt"></i> Abilities
+      </button>
+      <button class="fh-cs__tab" data-tab="gallery" role="tab">
+        <i class="fas fa-images"></i> Gallery
+      </button>
+      <button class="fh-cs__tab" data-tab="relations" role="tab">
+        <i class="fas fa-users"></i> Relations
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ TAB: BIO ============ -->
+  <section class="fh-cs__panel is-active" data-panel="bio">
+    <div class="fh-cs__grid-2">
+
+      <div class="fh-cs__card">
+        <h2 class="fh-cs__card-title"><i class="fas fa-book-open"></i> Biography</h2>
+
+        <div class="fh-cs__rich" id="fhCsBio">
+          <p>Born in Shiganshina District, Eren grew up believing that humanity had been wiped out beyond the Walls. That illusion shattered the day the <strong>Colossal Titan</strong> broke through Wall Maria — the day his mother was devoured in front of him.</p>
+
+          <p>Driven by an all-consuming hatred, Eren enlisted in the <strong>104th Training Corps</strong> and later joined the <strong>Survey Corps</strong>. What set him apart wasn't just his rage — it was his ability to <em>transform into a Titan</em>. A power that made him both a weapon and a target.</p>
+
+          <blockquote>
+            "If you win, you live. If you lose, you die. If you don't fight, you can't win."
+          </blockquote>
+
+          <p>As the series unfolds, Eren's worldview shifts from hopeful liberator to a figure willing to bear any burden. His decisions — some heroic, many terrible — reshape the fate of every character in the story.</p>
+        </div>
+
+        <div class="fh-cs__stat-grid">
+          <div class="fh-cs__stat">
+            <div class="fh-cs__stat-label">Full Name</div>
+            <div class="fh-cs__stat-value">Eren Yeager</div>
+          </div>
+          <div class="fh-cs__stat">
+            <div class="fh-cs__stat-label">Japanese</div>
+            <div class="fh-cs__stat-value">エレン・イェーガー</div>
+          </div>
+          <div class="fh-cs__stat">
+            <div class="fh-cs__stat-label">Age</div>
+            <div class="fh-cs__stat-value">19 (Final Season)</div>
+          </div>
+          <div class="fh-cs__stat">
+            <div class="fh-cs__stat-label">Status</div>
+            <div class="fh-cs__stat-value">Deceased</div>
+          </div>
+          <div class="fh-cs__stat">
+            <div class="fh-cs__stat-label">Height</div>
+            <div class="fh-cs__stat-value">183 cm</div>
+          </div>
+          <div class="fh-cs__stat">
+            <div class="fh-cs__stat-label">Birthday</div>
+            <div class="fh-cs__stat-value">March 30</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="fh-cs__card">
+        <h2 class="fh-cs__card-title"><i class="fas fa-circle-info"></i> Quick Facts</h2>
+
+        <ul class="fh-cs__facts">
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-dragon"></i> Fandom</span>
+            <span class="fh-cs__fact-value">Attack on Titan</span>
+          </li>
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-masks-theater"></i> Role</span>
+            <span class="fh-cs__fact-value">Protagonist</span>
+          </li>
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-shield-halved"></i> Affiliation</span>
+            <span class="fh-cs__fact-value">Survey Corps</span>
+          </li>
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-globe"></i> Origin</span>
+            <span class="fh-cs__fact-value">Shiganshina District</span>
+          </li>
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-microphone"></i> Voice (JP)</span>
+            <span class="fh-cs__fact-value">Yūki Kaji</span>
+          </li>
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-microphone"></i> Voice (EN)</span>
+            <span class="fh-cs__fact-value">Bryce Papenbrook</span>
+          </li>
+          <li>
+            <span class="fh-cs__fact-label"><i class="fas fa-book"></i> First Appeared</span>
+            <span class="fh-cs__fact-value">Chapter 1 (2009)</span>
+          </li>
+        </ul>
+
+        <div class="fh-cs__rating-block">
+          <div class="fh-cs__rating-title">Your Rating</div>
+          <div class="fh-cs__stars" id="fhCsStars" role="radiogroup" aria-label="Rate this character">
+            <button data-star="1" aria-label="1 star" type="button"><i class="far fa-star"></i></button>
+            <button data-star="2" aria-label="2 stars" type="button"><i class="far fa-star"></i></button>
+            <button data-star="3" aria-label="3 stars" type="button"><i class="far fa-star"></i></button>
+            <button data-star="4" aria-label="4 stars" type="button"><i class="far fa-star"></i></button>
+            <button data-star="5" aria-label="5 stars" type="button"><i class="far fa-star"></i></button>
+          </div>
+          <div class="fh-cs__rating-hint" id="fhCsRatingHint">Tap to rate</div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ============ TAB: TIMELINE ============ -->
+  <section class="fh-cs__panel" data-panel="timeline">
+    <div class="fh-cs__card fh-cs__card--full">
+      <h2 class="fh-cs__card-title"><i class="fas fa-timeline"></i> Story Timeline</h2>
+
+      <ol class="fh-cs__timeline" id="fhCsTimeline">
+        <li class="fh-cs__tl-item">
+          <div class="fh-cs__tl-marker"><i class="fas fa-fire"></i></div>
+          <div class="fh-cs__tl-body">
+            <div class="fh-cs__tl-date">845 · Chapter 1</div>
+            <h3 class="fh-cs__tl-title">The Fall of Wall Maria</h3>
+            <p>Colossal and Armored Titans breach the wall. Eren watches his mother Carla get devoured by a smiling Titan. His childhood ends in screams.</p>
+          </div>
+        </li>
+
+        <li class="fh-cs__tl-item">
+          <div class="fh-cs__tl-marker"><i class="fas fa-shield-halved"></i></div>
+          <div class="fh-cs__tl-body">
+            <div class="fh-cs__tl-date">847 · Chapter 2</div>
+            <h3 class="fh-cs__tl-title">Enlistment</h3>
+            <p>Eren joins the 104th Training Corps alongside Mikasa and Armin. His rage fuels him, but his recklessness worries his comrades.</p>
+          </div>
+        </li>
+
+        <li class="fh-cs__tl-item">
+          <div class="fh-cs__tl-marker"><i class="fas fa-dragon"></i></div>
+          <div class="fh-cs__tl-body">
+            <div class="fh-cs__tl-date">850 · Chapter 10</div>
+            <h3 class="fh-cs__tl-title">First Transformation</h3>
+            <p>During the Battle of Trost, Eren transforms into a Titan for the first time — saving Mikasa and turning the tide of the battle.</p>
+          </div>
+        </li>
+
+        <li class="fh-cs__tl-item">
+          <div class="fh-cs__tl-marker"><i class="fas fa-hand-fist"></i></div>
+          <div class="fh-cs__tl-body">
+            <div class="fh-cs__tl-date">850 · Chapter 50</div>
+            <h3 class="fh-cs__tl-title">The Coordinate Awakens</h3>
+            <p>Eren discovers he possesses the Founding Titan's power — the Coordinate — allowing him to control mindless Titans.</p>
+          </div>
+        </li>
+
+        <li class="fh-cs__tl-item">
+          <div class="fh-cs__tl-marker"><i class="fas fa-eye"></i></div>
+          <div class="fh-cs__tl-body">
+            <div class="fh-cs__tl-date">854 · Chapter 90</div>
+            <h3 class="fh-cs__tl-title">The Truth Beyond the Sea</h3>
+            <p>Reaching the ocean, Eren realizes the world beyond the Walls is not free. His darkest transformation begins.</p>
+          </div>
+        </li>
+
+        <li class="fh-cs__tl-item fh-cs__tl-item--final">
+          <div class="fh-cs__tl-marker"><i class="fas fa-skull"></i></div>
+          <div class="fh-cs__tl-body">
+            <div class="fh-cs__tl-date">854 · Chapter 123</div>
+            <h3 class="fh-cs__tl-title">The Rumbling</h3>
+            <p>Eren unleashes millions of Colossal Titans to flatten the world — a decision that will haunt every remaining character forever.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TAB: ABILITIES ============ -->
+  <section class="fh-cs__panel" data-panel="abilities">
+    <div class="fh-cs__grid-2">
+
+      <div class="fh-cs__card">
+        <h2 class="fh-cs__card-title"><i class="fas fa-bolt"></i> Abilities & Powers</h2>
+        <div class="fh-cs__abilities" id="fhCsAbilities">
+          <div class="fh-cs__ability">
+            <div class="fh-cs__ability-icon"><i class="fas fa-dragon"></i></div>
+            <div class="fh-cs__ability-body">
+              <h3>Titan Shifting</h3>
+              <p>Can transform into the Attack Titan at will.</p>
+              <div class="fh-cs__ability-bar"><span style="--w:95%; --c1:#ec4899; --c2:#a855f7"></span></div>
+            </div>
+          </div>
+
+          <div class="fh-cs__ability">
+            <div class="fh-cs__ability-icon"><i class="fas fa-brain"></i></div>
+            <div class="fh-cs__ability-body">
+              <h3>Founding Titan</h3>
+              <p>Controls mindless Titans and accesses Paths.</p>
+              <div class="fh-cs__ability-bar"><span style="--w:100%; --c1:#f59e0b; --c2:#ec4899"></span></div>
+            </div>
+          </div>
+
+          <div class="fh-cs__ability">
+            <div class="fh-cs__ability-icon"><i class="fas fa-fist-raised"></i></div>
+            <div class="fh-cs__ability-body">
+              <h3>Hardening</h3>
+              <p>Can crystalize his Titan body into near-unbreakable armor.</p>
+              <div class="fh-cs__ability-bar"><span style="--w:78%; --c1:#22d3ee; --c2:#6366f1"></span></div>
+            </div>
+          </div>
+
+          <div class="fh-cs__ability">
+            <div class="fh-cs__ability-icon"><i class="fas fa-wind"></i></div>
+            <div class="fh-cs__ability-body">
+              <h3>Regeneration</h3>
+              <p>Rapid healing after transformation and wounds.</p>
+              <div class="fh-cs__ability-bar"><span style="--w:88%; --c1:#10b981; --c2:#22d3ee"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fh-cs__card">
+        <h2 class="fh-cs__card-title"><i class="fas fa-chart-simple"></i> Combat Stats</h2>
+        <div class="fh-cs__stats-bars">
+          <div class="fh-cs__bar-row">
+            <span>Strength</span>
+            <div class="fh-cs__bar-track"><span class="fh-cs__bar-fill" style="--w:92%; --c1:#ef4444; --c2:#ec4899"></span></div>
+            <span>92</span>
+          </div>
+          <div class="fh-cs__bar-row">
+            <span>Agility</span>
+            <div class="fh-cs__bar-track"><span class="fh-cs__bar-fill" style="--w:78%; --c1:#22d3ee; --c2:#6366f1"></span></div>
+            <span>78</span>
+          </div>
+          <div class="fh-cs__bar-row">
+            <span>Intelligence</span>
+            <div class="fh-cs__bar-track"><span class="fh-cs__bar-fill" style="--w:84%; --c1:#a855f7; --c2:#ec4899"></span></div>
+            <span>84</span>
+          </div>
+          <div class="fh-cs__bar-row">
+            <span>Endurance</span>
+            <div class="fh-cs__bar-track"><span class="fh-cs__bar-fill" style="--w:96%; --c1:#f59e0b; --c2:#ec4899"></span></div>
+            <span>96</span>
+          </div>
+          <div class="fh-cs__bar-row">
+            <span>Determination</span>
+            <div class="fh-cs__bar-track"><span class="fh-cs__bar-fill" style="--w:100%; --c1:#6366f1; --c2:#a855f7"></span></div>
+            <span>100</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ TAB: GALLERY ============ -->
+  <section class="fh-cs__panel" data-panel="gallery">
+    <div class="fh-cs__card fh-cs__card--full">
+      <h2 class="fh-cs__card-title"><i class="fas fa-images"></i> Image Gallery</h2>
+
+      <div class="fh-cs__gallery" id="fhCsGallery">
+        <figure class="fh-cs__gallery-item">
+          <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=600" alt="Eren Titan form" loading="lazy" />
+          <figcaption>Attack Titan Form</figcaption>
+        </figure>
+        <figure class="fh-cs__gallery-item">
+          <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=600" alt="Survey Corps" loading="lazy" />
+          <figcaption>Survey Corps Oath</figcaption>
+        </figure>
+        <figure class="fh-cs__gallery-item">
+          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600" alt="The Rumbling" loading="lazy" />
+          <figcaption>The Rumbling Begins</figcaption>
+        </figure>
+        <figure class="fh-cs__gallery-item">
+          <img src="https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=600" alt="Paths" loading="lazy" />
+          <figcaption>Inside the Paths</figcaption>
+        </figure>
+        <figure class="fh-cs__gallery-item">
+          <img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=600" alt="Ocean" loading="lazy" />
+          <figcaption>Beyond the Ocean</figcaption>
+        </figure>
+        <figure class="fh-cs__gallery-item">
+          <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600" alt="Final Battle" loading="lazy" />
+          <figcaption>The Final Battle</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB: RELATIONS ============ -->
+  <section class="fh-cs__panel" data-panel="relations">
+    <div class="fh-cs__card fh-cs__card--full">
+      <h2 class="fh-cs__card-title"><i class="fas fa-users"></i> Character Relations</h2>
+
+      <div class="fh-cs__relations" id="fhCsRelations">
+        <a href="character-single.html?id=3" class="fh-cs__rel-card">
+          <div class="fh-cs__rel-avatar" style="--c1:#6366f1;--c2:#a855f7">M</div>
+          <div class="fh-cs__rel-body">
+            <h3>Mikasa Ackerman</h3>
+            <p class="fh-cs__rel-type fh-cs__rel-type--love">Love Interest</p>
+            <p class="fh-cs__rel-desc">Childhood friend and protector. Their bond defines both their arcs.</p>
+          </div>
+        </a>
+
+        <a href="character-single.html?id=4" class="fh-cs__rel-card">
+          <div class="fh-cs__rel-avatar" style="--c1:#22d3ee;--c2:#6366f1">A</div>
+          <div class="fh-cs__rel-body">
+            <h3>Armin Arlert</h3>
+            <p class="fh-cs__rel-type fh-cs__rel-type--friend">Best Friend</p>
+            <p class="fh-cs__rel-desc">Eren's strategist and moral compass since childhood.</p>
+          </div>
+        </a>
+
+        <a href="character-single.html?id=5" class="fh-cs__rel-card">
+          <div class="fh-cs__rel-avatar" style="--c1:#ef4444;--c2:#a855f7">L</div>
+          <div class="fh-cs__rel-body">
+            <h3>Levi Ackerman</h3>
+            <p class="fh-cs__rel-type fh-cs__rel-type--mentor">Mentor / Rival</p>
+            <p class="fh-cs__rel-desc">Levi's discipline and Eren's rage clash and complement each other.</p>
+          </div>
+        </a>
+
+        <a href="character-single.html?id=6" class="fh-cs__rel-card">
+          <div class="fh-cs__rel-avatar" style="--c1:#a855f7;--c2:#ec4899">R</div>
+          <div class="fh-cs__rel-body">
+            <h3>Reiner Braun</h3>
+            <p class="fh-cs__rel-type fh-cs__rel-type--enemy">Enemy / Mirror</p>
+            <p class="fh-cs__rel-desc">Parallel protagonist — both soldiers, both monsters.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="fh-cs__cta">
+    <div class="fh-cs__cta-inner">
+      <div>
+        <h3 class="fh-cs__cta-title">Love this character?</h3>
+        <p class="fh-cs__cta-desc">Submit fan art, edits, or write your own analysis to be featured.</p>
+      </div>
+      <a href="fan-submit.html" class="fh-cs__cta-btn">
+        <i class="fas fa-cloud-arrow-up"></i> Submit Fan Content
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fh-footer" id="fhFooter">
+  <div class="fh-footer__inner">
+    <div class="fh-footer__grid">
+      <div class="fh-footer__brand">
+        <h3>Fan Hub Plus</h3>
+        <p>Your all-in-one destination for Anime, Movies, TV Series, K-Pop, Gaming, and Comics.</p>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Series</a></li>
+          <li><a href="anime.html">Anime</a></li>
+          <li><a href="characters.html">Characters</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="fan-submit.html">Fan Art</a></li>
+          <li><a href="cosplay.html">Cosplay</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="articles.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fh-footer__bottom">
+      <p>© 2026 Fan Hub Plus. All rights reserved.</p>
+      <div class="fh-footer__social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/character-single.js"></script>
+
+</body>
+</html>

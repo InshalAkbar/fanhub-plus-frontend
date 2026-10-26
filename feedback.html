@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Feedback | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('fanhub-theme');
+    if (saved === 'light') document.documentElement.classList.add('light-mode');
+    else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/shared.css" />
+<link rel="stylesheet" href="assets/css/feedback.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+
+<link rel="stylesheet" href="assets/css/bot-widget.css" />
+<script src="assets/js/bot-widget.js" defer></script>
+<body class="fh-app fh-feedback-page">
+
+<div class="fh-progress" id="fhProgressBar" aria-hidden="true"></div>
+
+<header class="fh-navbar" id="fhNavbar">
+  <div class="fh-navbar__inner" id="fhNavbarInner">
+    <span class="fh-navbar__glow" aria-hidden="true"></span>
+    <span class="fh-navbar__edge" aria-hidden="true"></span>
+    <span class="fh-navbar__particles" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>
+
+      <nav class="fh-nav" id="fhNav" aria-label="Primary">
+      <span class="fh-nav__pill" id="fhNavPill" aria-hidden="true"></span>
+
+      <a href="dashboard.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Home
+      </a>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="movies">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Movies
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="movies.html" class="fh-dropdown__item"><i class="fas fa-film"></i> All Movies</a>
+          <a href="movies.html?sort=latest" class="fh-dropdown__item"><i class="fas fa-clock-rotate-left"></i> Latest</a>
+          <a href="movies.html?sort=popular" class="fh-dropdown__item"><i class="fas fa-fire"></i> Most Watched</a>
+          <a href="movies.html?sort=upcoming" class="fh-dropdown__item"><i class="fas fa-calendar-plus"></i> Upcoming</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="tv">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> TV Series
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="tv-shows.html" class="fh-dropdown__item"><i class="fas fa-tv"></i> All Series</a>
+          <a href="tv-shows.html?sort=latest" class="fh-dropdown__item"><i class="fas fa-clock-rotate-left"></i> Latest</a>
+          <a href="tv-shows.html?sort=popular" class="fh-dropdown__item"><i class="fas fa-fire"></i> Most Watched</a>
+          <a href="tv-shows.html?sort=top" class="fh-dropdown__item"><i class="fas fa-star"></i> Top Rated</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="categories">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Categories
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="anime.html" class="fh-dropdown__item"><i class="fas fa-dragon"></i> Anime</a>
+          <a href="gaming.html" class="fh-dropdown__item"><i class="fas fa-gamepad"></i> Gaming</a>
+          <a href="kpop.html" class="fh-dropdown__item"><i class="fas fa-music"></i> K-Pop</a>
+          <a href="comics.html" class="fh-dropdown__item"><i class="fas fa-book-open"></i> Comics</a>
+          <a href="manga.html" class="fh-dropdown__item"><i class="fas fa-scroll"></i> Manga</a>
+          <a href="cosplay.html" class="fh-dropdown__item"><i class="fas fa-user-ninja"></i> Cosplay</a>
+          <a href="merchandise.html" class="fh-dropdown__item"><i class="fas fa-bag-shopping"></i> Merchandise</a>
+        </div>
+      </div>
+
+      <a href="events.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Events
+      </a>
+
+      <a href="articles.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Articles
+      </a>
+
+      <a href="characters.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Characters
+      </a>
+
+      <a href="feedback.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Feedback
+      </a>
+    </nav>
+
+    <div class="fh-nav-actions">
+      <div class="fh-search-wrap" id="fhSearchWrap">
+        <div class="fh-search-inline">
+          <i class="fas fa-magnifying-glass fh-search-inline__icon" aria-hidden="true"></i>
+          <input type="text" id="fhSearchInput" class="fh-search-inline__input"
+                 placeholder="Search..." autocomplete="off"
+                 aria-label="Search" />
+          <kbd class="fh-search-inline__kbd">⌘K</kbd>
+        </div>
+        <div class="fh-search-results hide-scrollbar" id="fhSearchResults" role="listbox"></div>
+      </div>
+
+      <button class="fh-theme-toggle" id="fhThemeToggle" type="button"
+              aria-label="Switch to light mode" aria-pressed="false">
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--sun" aria-hidden="true"><i class="fas fa-sun"></i></span>
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--moon" aria-hidden="true"><i class="fas fa-moon"></i></span>
+      </button>
+
+      <div class="fh-nav__item fh-nav__item--dropdown fh-user-menu" data-dropdown="user">
+        <button class="fh-user-menu__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-profile-btn__inner" id="fhUserAvatar">Y</span>
+        </button>
+        <div class="fh-dropdown fh-dropdown--user" role="menu">
+          <a href="dashboard.html" class="fh-dropdown__item"><i class="fas fa-gauge"></i> Dashboard</a>
+          <a href="profile.html" class="fh-dropdown__item"><i class="fas fa-user"></i> Profile</a>
+          <a href="my-bookmarks.html" class="fh-dropdown__item"><i class="fas fa-bookmark"></i> Bookmarks</a>
+          <a href="my-submissions.html" class="fh-dropdown__item"><i class="fas fa-upload"></i> My Submissions</a>
+          <a href="feedback.html" class="fh-dropdown__item is-active"><i class="fas fa-comment-dots"></i> My Feedback</a>
+          <a href="notifications.html" class="fh-dropdown__item"><i class="fas fa-bell"></i> Notifications</a>
+          <div class="fh-dropdown__divider"></div>
+          <a href="logout.html" class="fh-dropdown__item fh-dropdown__item--danger"><i class="fas fa-right-from-bracket"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="fh-menu-toggle" id="fhMenuToggle" aria-label="Toggle menu"
+            aria-expanded="false" aria-controls="fhMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="fh-mobile-menu" id="fhMobileMenu">
+    <a href="dashboard.html" class="fh-mobile-menu__link">Home</a>
+    <a href="dashboard.html" class="fh-mobile-menu__link">Dashboard</a>
+    <a href="articles.html" class="fh-mobile-menu__link">Articles</a>
+    <a href="feedback.html" class="fh-mobile-menu__link is-active">Feedback</a>
+    <a href="movies.html" class="fh-mobile-menu__link">Movies</a>
+    <a href="tv-shows.html" class="fh-mobile-menu__link">TV Series</a>
+    <a href="events.html" class="fh-mobile-menu__link">Events</a>
+    <a href="characters.html" class="fh-mobile-menu__link">Characters</a>
+    <a href="my-bookmarks.html" class="fh-mobile-menu__link">Bookmarks</a>
+    <a href="profile.html" class="fh-mobile-menu__link">Profile</a>
+    <a href="logout.html" class="fh-cta fh-cta--full">Logout</a>
+    <a href="merchandise.html" class="fh-cta fh-cta--full">Merchandise</a>
+  </div>
+</header>
+<main class="fh-fb" id="fhFb">
+
+  <nav class="fh-breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <span>Feedback</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="fh-fb__hero">
+    <div class="fh-fb__hero-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="fh-fb__hero-grid" aria-hidden="true"></div>
+
+    <div class="fh-fb__hero-inner">
+      <div class="fh-fb__hero-badge"><i class="fas fa-comment-dots"></i> We're listening</div>
+      <h1 class="fh-fb__hero-title">Send Us Your Feedback</h1>
+      <p class="fh-fb__hero-sub">
+        Found a bug? Have an idea? Just want to say hi? Tell us — every message reaches a real human
+        and helps make Fan Hub Plus better for everyone.
+      </p>
+
+      <div class="fh-fb__hero-stats">
+        <div class="fh-fb__hero-stat">
+          <div class="fh-fb__hero-stat-value">24h</div>
+          <div class="fh-fb__hero-stat-label">Avg. Response</div>
+        </div>
+        <div class="fh-fb__hero-stat">
+          <div class="fh-fb__hero-stat-value">98%</div>
+          <div class="fh-fb__hero-stat-label">Resolved</div>
+        </div>
+        <div class="fh-fb__hero-stat">
+          <div class="fh-fb__hero-stat-value">12K+</div>
+          <div class="fh-fb__hero-stat-label">Feedbacks Read</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN LAYOUT -->
+  <div class="fh-fb__layout">
+
+    <!-- FORM -->
+    <section class="fh-fb__form-wrap">
+      <form class="fh-fb__form" id="fhFbForm" novalidate>
+
+        <!-- Type -->
+        <div class="fh-fb__card">
+          <div class="fh-fb__card-head">
+            <h2 class="fh-fb__card-title"><i class="fas fa-tags"></i> What's this about?</h2>
+            <p class="fh-fb__card-sub">Choose the type that fits best — it helps us route your message.</p>
+          </div>
+
+          <div class="fh-fb__types" role="radiogroup" aria-label="Feedback type">
+            <label class="fh-fb__type" data-type="bug">
+              <input type="radio" name="type" value="bug" required />
+              <span class="fh-fb__type-inner">
+                <span class="fh-fb__type-icon" style="--c1:#ef4444;--c2:#f97316"><i class="fas fa-bug"></i></span>
+                <span class="fh-fb__type-body">
+                  <span class="fh-fb__type-name">Bug Report</span>
+                  <span class="fh-fb__type-desc">Something's broken</span>
+                </span>
+                <span class="fh-fb__type-check"><i class="fas fa-check"></i></span>
+              </span>
+            </label>
+
+            <label class="fh-fb__type" data-type="suggestion">
+              <input type="radio" name="type" value="suggestion" required />
+              <span class="fh-fb__type-inner">
+                <span class="fh-fb__type-icon" style="--c1:#6366f1;--c2:#a855f7"><i class="fas fa-lightbulb"></i></span>
+                <span class="fh-fb__type-body">
+                  <span class="fh-fb__type-name">Suggestion</span>
+                  <span class="fh-fb__type-desc">An idea to improve</span>
+                </span>
+                <span class="fh-fb__type-check"><i class="fas fa-check"></i></span>
+              </span>
+            </label>
+
+            <label class="fh-fb__type" data-type="query">
+              <input type="radio" name="type" value="query" required />
+              <span class="fh-fb__type-inner">
+                <span class="fh-fb__type-icon" style="--c1:#22d3ee;--c2:#6366f1"><i class="fas fa-circle-question"></i></span>
+                <span class="fh-fb__type-body">
+                  <span class="fh-fb__type-name">Question</span>
+                  <span class="fh-fb__type-desc">Need help with something</span>
+                </span>
+                <span class="fh-fb__type-check"><i class="fas fa-check"></i></span>
+              </span>
+            </label>
+
+            <label class="fh-fb__type" data-type="praise">
+              <input type="radio" name="type" value="praise" required />
+              <span class="fh-fb__type-inner">
+                <span class="fh-fb__type-icon" style="--c1:#10b981;--c2:#22c55e"><i class="fas fa-heart"></i></span>
+                <span class="fh-fb__type-body">
+                  <span class="fh-fb__type-name">Praise</span>
+                  <span class="fh-fb__type-desc">Just want to say thanks</span>
+                </span>
+                <span class="fh-fb__type-check"><i class="fas fa-check"></i></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="fh-fb__card">
+          <div class="fh-fb__card-head">
+            <h2 class="fh-fb__card-title"><i class="fas fa-pen"></i> Tell us more</h2>
+            <p class="fh-fb__card-sub">The more detail, the better we can help.</p>
+          </div>
+
+          <div class="fh-fb__grid">
+            <div class="fh-fb__field">
+              <label class="fh-fb__label" for="fhFbName">Your Name <span class="fh-fb__req">*</span></label>
+              <input type="text" id="fhFbName" name="name" class="fh-fb__input" placeholder="e.g. Yusha Khan" autocomplete="name" required />
+              <span class="fh-fb__err" data-err="name"></span>
+            </div>
+
+            <div class="fh-fb__field">
+              <label class="fh-fb__label" for="fhFbEmail">Email <span class="fh-fb__req">*</span></label>
+              <input type="email" id="fhFbEmail" name="email" class="fh-fb__input" placeholder="you@example.com" autocomplete="email" required />
+              <span class="fh-fb__err" data-err="email"></span>
+            </div>
+
+            <div class="fh-fb__field fh-fb__field--full">
+              <label class="fh-fb__label" for="fhFbSubject">Subject <span class="fh-fb__req">*</span></label>
+              <input type="text" id="fhFbSubject" name="subject" class="fh-fb__input" placeholder="Short summary of your feedback" maxlength="120" required />
+              <span class="fh-fb__err" data-err="subject"></span>
+            </div>
+
+            <div class="fh-fb__field fh-fb__field--full">
+              <label class="fh-fb__label" for="fhFbMessage">Message <span class="fh-fb__req">*</span></label>
+              <textarea id="fhFbMessage" name="message" class="fh-fb__input fh-fb__textarea" rows="7"
+                        placeholder="Describe your feedback in detail... What happened? What did you expect?" maxlength="1500" required></textarea>
+              <div class="fh-fb__counter"><span id="fhFbCount">0</span> / 1500</div>
+              <span class="fh-fb__err" data-err="message"></span>
+            </div>
+
+            <div class="fh-fb__field">
+              <label class="fh-fb__label" for="fhFbPriority">Priority</label>
+              <div class="fh-fb__select-wrap">
+                <i class="fas fa-flag"></i>
+                <select id="fhFbPriority" name="priority" class="fh-fb__input fh-fb__select">
+                  <option value="low">Low — General</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="high">High — Blocks me</option>
+                  <option value="critical">Critical — Site broken</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="fh-fb__field">
+              <label class="fh-fb__label" for="fhFbPage">Related Page <span class="fh-fb__opt">(optional)</span></label>
+              <div class="fh-fb__select-wrap">
+                <i class="fas fa-link"></i>
+                <select id="fhFbPage" name="page" class="fh-fb__input fh-fb__select">
+                  <option value="">Not specific</option>
+                  <option value="index.html">Home</option>
+                  <option value="dashboard.html">Dashboard</option>
+                  <option value="articles.html">Articles</option>
+                  <option value="article-single.html">Article Single</option>
+                  <option value="events.html">Events</option>
+                  <option value="event-single.html">Event Single</option>
+                  <option value="characters.html">Characters</option>
+                  <option value="character-single.html">Character Single</option>
+                  <option value="profile.html">Profile</option>
+                  <option value="fan-submit.html">Fan Submit</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rating -->
+        <div class="fh-fb__card">
+          <div class="fh-fb__card-head">
+            <h2 class="fh-fb__card-title"><i class="fas fa-star"></i> Rate your experience</h2>
+            <p class="fh-fb__card-sub">Optional — helps us track overall satisfaction.</p>
+          </div>
+
+          <div class="fh-fb__rating" id="fhFbRating" role="radiogroup" aria-label="Rating">
+            <button type="button" class="fh-fb__star" data-value="1" aria-label="1 star"><i class="far fa-star"></i></button>
+            <button type="button" class="fh-fb__star" data-value="2" aria-label="2 stars"><i class="far fa-star"></i></button>
+            <button type="button" class="fh-fb__star" data-value="3" aria-label="3 stars"><i class="far fa-star"></i></button>
+            <button type="button" class="fh-fb__star" data-value="4" aria-label="4 stars"><i class="far fa-star"></i></button>
+            <button type="button" class="fh-fb__star" data-value="5" aria-label="5 stars"><i class="far fa-star"></i></button>
+            <span class="fh-fb__rating-label" id="fhFbRatingLabel">Not rated</span>
+          </div>
+        </div>
+
+        <!-- Attachment + Consent -->
+        <div class="fh-fb__card">
+          <div class="fh-fb__card-head">
+            <h2 class="fh-fb__card-title"><i class="fas fa-paperclip"></i> Attachments & Consent</h2>
+          </div>
+
+          <label class="fh-fb__upload" for="fhFbFile">
+            <input type="file" id="fhFbFile" name="file" accept="image/*" hidden />
+            <span class="fh-fb__upload-icon"><i class="fas fa-cloud-arrow-up"></i></span>
+            <span class="fh-fb__upload-text">
+              <strong>Click to upload a screenshot</strong>
+              <span>PNG, JPG — max 5 MB</span>
+            </span>
+          </label>
+          <div class="fh-fb__upload-preview" id="fhFbPreview" hidden>
+            <img id="fhFbPreviewImg" alt="Preview" />
+            <button type="button" class="fh-fb__upload-remove" id="fhFbRemove" aria-label="Remove image"><i class="fas fa-xmark"></i></button>
+          </div>
+
+          <label class="fh-fb__check">
+            <input type="checkbox" id="fhFbConsent" required />
+            <span class="fh-fb__check-box"><i class="fas fa-check"></i></span>
+            <span class="fh-fb__check-text">I agree to be contacted regarding this feedback. <span class="fh-fb__req">*</span></span>
+          </label>
+          <span class="fh-fb__err" data-err="consent"></span>
+        </div>
+
+        <!-- Actions -->
+        <div class="fh-fb__actions">
+          <button type="reset" class="fh-fb__btn fh-fb__btn--ghost" id="fhFbReset">
+            <i class="fas fa-rotate-left"></i> Reset
+          </button>
+          <button type="submit" class="fh-fb__btn fh-fb__btn--primary" id="fhFbSubmit">
+            <i class="fas fa-paper-plane"></i> Send Feedback
+          </button>
+        </div>
+      </form>
+
+      <!-- SUCCESS -->
+      <div class="fh-fb__success" id="fhFbSuccess" hidden>
+        <div class="fh-fb__success-icon"><i class="fas fa-check"></i></div>
+        <h2>Thank you for your feedback!</h2>
+        <p>Your message has been sent to our team. We'll get back to you at the email you provided within 24 hours.</p>
+        <div class="fh-fb__success-id">Reference ID: <strong id="fhFbRefId">—</strong></div>
+        <div class="fh-fb__success-actions">
+          <a href="feedback.html" class="fh-fb__btn fh-fb__btn--primary"><i class="fas fa-list-check"></i> View My Feedback</a>
+          <button type="button" class="fh-fb__btn fh-fb__btn--ghost" id="fhFbAnother"><i class="fas fa-plus"></i> Send Another</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIDEBAR -->
+    <aside class="fh-fb__side">
+
+      <div class="fh-fb__side-card">
+        <h3 class="fh-fb__side-title"><i class="fas fa-bolt"></i> Quick Tips</h3>
+        <ul class="fh-fb__tips">
+          <li><i class="fas fa-check"></i> Be specific about what happened and when.</li>
+          <li><i class="fas fa-check"></i> Include your browser & device for bug reports.</li>
+          <li><i class="fas fa-check"></i> Screenshots help us fix things faster.</li>
+          <li><i class="fas fa-check"></i> One issue per message keeps things clear.</li>
+        </ul>
+      </div>
+
+      <div class="fh-fb__side-card">
+        <h3 class="fh-fb__side-title"><i class="fas fa-clock-rotate-left"></i> Your Recent Feedback</h3>
+        <div class="fh-fb__recent" id="fhFbRecent">
+          <p class="fh-fb__recent-empty">No feedback yet. Your submissions will show here.</p>
+        </div>
+      </div>
+
+      <div class="fh-fb__side-card fh-fb__side-card--cta">
+        <div class="fh-fb__side-icon"><i class="fas fa-headset"></i></div>
+        <h3 class="fh-fb__side-title">Need urgent help?</h3>
+        <p>Check our Help Center for instant answers, or email us directly.</p>
+        <a href="help.html" class="fh-fb__side-btn"><i class="fas fa-circle-question"></i> Help Center</a>
+        <a href="contact.html" class="fh-fb__side-link"><i class="fas fa-envelope"></i> Contact us</a>
+      </div>
+
+    </aside>
+  </div>
+
+</main>
+
+<footer class="fh-footer" id="fhFooter">
+  <div class="fh-footer__inner">
+    <div class="fh-footer__grid">
+      <div class="fh-footer__brand">
+        <h3>Fan Hub Plus</h3>
+        <p>Your all-in-one destination for Anime, Movies, TV Series, K-Pop, Gaming, and Comics.</p>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Series</a></li>
+          <li><a href="anime.html">Anime</a></li>
+          <li><a href="characters.html">Characters</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="fan-submit.html">Fan Art</a></li>
+          <li><a href="cosplay.html">Cosplay</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fh-footer__bottom">
+      <p>© 2026 Fan Hub Plus. All rights reserved.</p>
+      <div class="fh-footer__social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/feedback.js"></script>
+
+</body>
+</html>

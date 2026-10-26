@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Categories · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-categories.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item is-active" href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Categories</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<!-- breadcrumbs -->
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Categories</span>
+</nav>
+
+<!-- page header -->
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Categories</h2>
+    <p class="page-sub">Manage the 8 core fandoms on your platform.</p>
+  </div>
+  <button class="btn btn-primary" id="addCategoryBtn">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add Category</span>
+  </button>
+</div>
+
+<!-- filters -->
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="categorySearch" placeholder="Search categories...">
+  </div>
+  <select class="input filter-select" id="statusFilter">
+    <option value="">All status</option>
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
+  </select>
+</div>
+
+<!-- table -->
+<div class="panel">
+  <div class="panel-body no-pad">
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Slug</th>
+            <th>Description</th>
+            <th>Content</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="categoryTableBody">
+                      <tr data-id="1" data-name="anime"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #E85D3D">
+                    <i class="fa-solid fa-dragon"></i>
+                  </span>
+                  <strong>Anime</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">anime</code></td>
+              <td class="cat-desc">Japanese animation series and films</td>
+              <td><span class="pill">6 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="2" data-name="gaming"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #7B5FA8">
+                    <i class="fa-solid fa-gamepad"></i>
+                  </span>
+                  <strong>Gaming</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">gaming</code></td>
+              <td class="cat-desc">Video games across all platforms</td>
+              <td><span class="pill">6 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="3" data-name="movies"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #8237AC">
+                    <i class="fa-solid fa-film"></i>
+                  </span>
+                  <strong>Movies</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">movies</code></td>
+              <td class="cat-desc">Feature films from every genre</td>
+              <td><span class="pill">6 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="4" data-name="tv shows"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #22217A">
+                    <i class="fa-solid fa-tv"></i>
+                  </span>
+                  <strong>TV Shows</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">tv-shows</code></td>
+              <td class="cat-desc">Series and streaming originals</td>
+              <td><span class="pill">5 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="5" data-name="k-pop"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #D96FA0">
+                    <i class="fa-solid fa-music"></i>
+                  </span>
+                  <strong>K-Pop</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">kpop</code></td>
+              <td class="cat-desc">Korean pop music and artists</td>
+              <td><span class="pill">6 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="6" data-name="comics"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #E8A33D">
+                    <i class="fa-solid fa-mask"></i>
+                  </span>
+                  <strong>Comics</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">comics</code></td>
+              <td class="cat-desc">Western comic books and superheroes</td>
+              <td><span class="pill">6 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="7" data-name="manga"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #5A4578">
+                    <i class="fa-solid fa-book-open"></i>
+                  </span>
+                  <strong>Manga</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">manga</code></td>
+              <td class="cat-desc">Japanese manga and light novels</td>
+              <td><span class="pill">5 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                      <tr data-id="8" data-name="cosplay"
+                data-status="active">
+              <td>
+                <div class="cat-cell">
+                  <span class="cat-icon" style="--c: #653C9E">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                  </span>
+                  <strong>Cosplay</strong>
+                </div>
+              </td>
+              <td><code class="mono code-pill">cosplay</code></td>
+              <td class="cat-desc">Costume design and cosplay culture</td>
+              <td><span class="pill">6 items</span></td>
+              <td><span class="status-badge ok">Active</span></td>
+              <td class="row-actions">
+                <button class="icon-btn" aria-label="Edit" data-edit>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="icon-btn danger" aria-label="Delete"
+                        data-delete
+                        data-confirm="Delete this category? This cannot be undone.">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+                  </tbody>
+      </table>
+    </div>
+    <div class="empty hide" id="noResults">
+      <i class="fa-regular fa-folder-open"></i>
+      <p>No categories match your search.</p>
+    </div>
+  </div>
+</div>
+
+<!-- add/edit modal -->
+<div class="modal" id="categoryModal" aria-hidden="true">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-panel">
+    <header class="modal-head">
+      <h3 id="modalTitle">Add Category</h3>
+      <button class="icon-btn" data-close aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </header>
+
+    <div class="modal-body">
+      <!-- Laravel will POST to /admin/categories -->
+      <form id="categoryForm" class="form-grid" autocomplete="off" data-static="1" data-action="admin.categories.store">
+        <div class="field">
+          <label for="catName">Name</label>
+          <input class="input" id="catName" name="name" type="text"
+                 placeholder="e.g. Anime" required>
+        </div>
+
+        <div class="field">
+          <label for="catSlug">Slug</label>
+          <input class="input" id="catSlug" name="slug" type="text"
+                 placeholder="e.g. anime" required>
+        </div>
+
+        <div class="field">
+          <label for="catIcon">Icon class</label>
+          <input class="input" id="catIcon" name="icon" type="text"
+                 placeholder="fa-solid fa-dragon">
+        </div>
+
+        <div class="field">
+          <label for="catDesc">Description</label>
+          <textarea class="input" id="catDesc" name="description" rows="3"
+                    placeholder="Short description"></textarea>
+        </div>
+
+        <label class="switch">
+          <input type="checkbox" id="catActive" name="active" checked>
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span class="switch-label">Active</span>
+        </label>
+      </form>
+    </div>
+
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" data-close>Cancel</button>
+      <button class="btn btn-primary" id="saveCategory" type="submit">
+        <i class="fa-solid fa-check"></i>
+        <span>Save Category</span>
+      </button>
+    </footer>
+  </div>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-categories.js"></script>
+</body></html>

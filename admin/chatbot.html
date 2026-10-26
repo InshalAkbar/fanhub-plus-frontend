@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Chatbot FAQ · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-chatbot.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item is-active" href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Chatbot FAQ</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Chatbot FAQ</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Chatbot FAQ</h2>
+    <p class="page-sub">Knowledge base for the AI assistant. Fans ask, bot answers.</p>
+  </div>
+  <button class="btn btn-primary" id="addFaqBtn">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add FAQ</span>
+  </button>
+</div>
+
+<!-- stats -->
+<section class="mini-stats">
+  <div class="mini-stat">
+    <span class="mini-stat-label">Total FAQs</span>
+    <span class="mini-stat-value">8</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Active</span>
+    <span class="mini-stat-value ok">7</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Total Hits</span>
+    <span class="mini-stat-value">2.8K</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">This Week</span>
+    <span class="mini-stat-value">+142</span>
+  </div>
+</section>
+
+<!-- filters -->
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="faqSearch" placeholder="Search questions...">
+  </div>
+  <select class="input filter-select" id="categoryFilter">
+    <option value="">All categories</option>
+          <option value="Getting Started">Getting Started</option>
+          <option value="Account">Account</option>
+          <option value="Submissions">Submissions</option>
+          <option value="General">General</option>
+          <option value="Media">Media</option>
+          <option value="Support">Support</option>
+      </select>
+  <select class="input filter-select" id="statusFilter">
+    <option value="">All status</option>
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
+  </select>
+</div>
+
+<!-- faq list -->
+<div class="faq-list" id="faqList">
+      <article class="faq-card" data-id="1"
+             data-question="how do i create an account?"
+             data-category="Getting Started"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How do I create an account?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Getting Started</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 142 hits</span>
+          <span class="date-txt">Sep 09, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="2"
+             data-question="how do i reset my password?"
+             data-category="Account"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How do I reset my password?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Account</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 118 hits</span>
+          <span class="date-txt">Sep 10, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="3"
+             data-question="how do i submit fan content?"
+             data-category="Submissions"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How do I submit fan content?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Submissions</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 96 hits</span>
+          <span class="date-txt">Sep 11, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="4"
+             data-question="how long does review take?"
+             data-category="Submissions"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How long does review take?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Submissions</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 77 hits</span>
+          <span class="date-txt">Sep 12, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="5"
+             data-question="can i bookmark articles?"
+             data-category="General"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">Can I bookmark articles?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">General</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 64 hits</span>
+          <span class="date-txt">Sep 13, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="6"
+             data-question="where can i watch trailers?"
+             data-category="Media"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">Where can I watch trailers?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Media</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 58 hits</span>
+          <span class="date-txt">Sep 14, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="7"
+             data-question="how do i change my profile picture?"
+             data-category="Account"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How do I change my profile picture?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Account</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 51 hits</span>
+          <span class="date-txt">Sep 15, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="8"
+             data-question="how do i report a bug?"
+             data-category="Support"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How do I report a bug?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Support</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 39 hits</span>
+          <span class="date-txt">Sep 16, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="9"
+             data-question="is fan hub plus free?"
+             data-category="General"
+             data-status="inactive">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">Is Fan Hub Plus free?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">General</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 33 hits</span>
+          <span class="date-txt">Sep 17, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge danger">Inactive</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="faq-card" data-id="10"
+             data-question="how do i contact support?"
+             data-category="Support"
+             data-status="active">
+
+      <div class="faq-icon">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+
+      <div class="faq-main">
+        <h3 class="faq-question">How do I contact support?</h3>
+        <div class="faq-meta">
+          <span class="cat-tag">Support</span>
+          <span class="hits-tag"><i class="fa-regular fa-eye"></i> 29 hits</span>
+          <span class="date-txt">Sep 18, 2026</span>
+        </div>
+      </div>
+
+      <div class="faq-actions">
+        <span class="status-badge ok">Active</span>
+        <button class="icon-btn" data-edit aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.chatbot.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+  </div>
+
+<div class="empty hide" id="noResults">
+  <i class="fa-regular fa-comment-dots"></i>
+  <p>No FAQs match your filters.</p>
+</div>
+
+<!-- add/edit modal -->
+<div class="modal" id="faqModal" aria-hidden="true">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-panel">
+    <header class="modal-head">
+      <h3 id="faqModalTitle">Add FAQ</h3>
+      <button class="icon-btn" data-close aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </header>
+    <div class="modal-body">
+      <form id="faqForm" class="form-grid" autocomplete="off" data-static="1" data-action="admin.chatbot.store">
+        <div class="field">
+          <label for="faqQuestion">Question</label>
+          <input class="input" id="faqQuestion" name="question" type="text"
+                 placeholder="e.g. How do I bookmark a character?" required>
+        </div>
+        <div class="field">
+          <label for="faqAnswer">Answer</label>
+          <textarea class="input" id="faqAnswer" name="answer" rows="4"
+                    placeholder="The bot will say this..."></textarea>
+        </div>
+        <div class="field">
+          <label for="faqCategory">Category</label>
+          <select class="input" id="faqCategory" name="category" required>
+                          <option value="Getting Started">Getting Started</option>
+                          <option value="Account">Account</option>
+                          <option value="Submissions">Submissions</option>
+                          <option value="General">General</option>
+                          <option value="Media">Media</option>
+                          <option value="Support">Support</option>
+                      </select>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="faqStatus" name="is_active" value="1" checked>
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span class="switch-label">Active</span>
+        </label>
+      </form>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" data-close>Cancel</button>
+      <button class="btn btn-primary" id="saveFaq" type="submit">
+        <i class="fa-solid fa-check"></i>
+        <span>Save FAQ</span>
+      </button>
+    </footer>
+  </div>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-chatbot.js"></script>
+</body></html>

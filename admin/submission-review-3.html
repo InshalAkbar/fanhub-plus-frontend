@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Review Submission · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-submission-review.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item is-active" href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Review Submission</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="submissions.html">Fan Submissions</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Review #3</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Review Submission</h2>
+    <p class="page-sub">Approve or reject fan content before publishing.</p>
+  </div>
+  <a href="submissions.html" class="btn btn-ghost">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Back</span>
+  </a>
+</div>
+
+<div class="review-layout">
+
+  <!-- main: submission content -->
+  <div class="review-main">
+
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h3 class="panel-title">Cosplay Process: Building Geralt Armor</h3>
+          <p class="panel-sub">
+            <span class="cat-pill" style="--c: #653C9E">
+              Cosplay
+            </span>
+            <span class="sub-type-tag">
+              <i class="fa-solid fa-file"></i>
+              Photo
+            </span>
+          </p>
+        </div>
+        <span class="status-badge ok">Approved</span>
+      </div>
+      <div class="panel-body">
+        <p class="excerpt">Sharing my full process for making Witcher armor from EVA foam...</p>
+        <div class="content-body">
+          Sharing my full process for making Witcher armor from EVA foam...<br />
+<br />
+Sharing my full process for making Witcher armor from EVA foam...
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- side: author + actions -->
+  <aside class="review-side">
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">Submitted By</h3>
+      </div>
+      <div class="panel-body">
+        <div class="author-block">
+          <span class="avatar avatar-lg">MA</span>
+          <div class="author-info">
+            <strong>Mikasa Ackerman</strong>
+            <span>mikasa@scouts.jp</span>
+          </div>
+        </div>
+        <div class="sub-meta">
+          <div class="meta-row">
+            <span class="meta-label">Submitted</span>
+            <span class="meta-value">Oct 14, 2026</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Category</span>
+            <span class="meta-value">Cosplay</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">Moderation</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="field">
+          <label for="adminNote">Note to submitter (optional)</label>
+          <textarea class="input" id="adminNote" rows="3"
+                    placeholder="Reason for rejection, or feedback..."></textarea>
+        </div>
+
+        <div class="review-actions">
+          <form data-static="1" data-action="admin.submissions.reject"><input type="hidden" name="note" id="rejectNote"><button class="btn btn-danger" id="rejectBtn" type="submit">
+            <i class="fa-solid fa-xmark"></i>
+            <span>Reject</span>
+          </button></form>
+          <form data-static="1" data-action="admin.submissions.approve"><input type="hidden" name="note" id="approveNote"><button class="btn btn-primary" id="approveBtn" type="submit">
+            <i class="fa-solid fa-check"></i>
+            <span>Approve &amp; Publish</span>
+          </button></form>
+        </div>
+
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-submission-review.js"></script>
+</body></html>

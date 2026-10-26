@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Account — Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var s = localStorage.getItem('fanhub-theme');
+    if (s === 'light') document.documentElement.classList.add('light-mode');
+    else if (s === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/auth.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+<body class="auth-body">
+
+<div class="auth-bg">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="assets/videos/auth-bg.mp4" type="video/mp4" />
+  </video>
+  <span class="auth-bg__overlay"></span>
+  <span class="auth-bg__orb auth-bg__orb--1"></span>
+  <span class="auth-bg__orb auth-bg__orb--2"></span>
+</div>
+
+<a href="index.html" class="auth-back">
+  <i class="fas fa-arrow-left"></i>
+  <span>Back to home</span>
+</a>
+
+<main class="auth-shell">
+
+  <div class="auth-card">
+
+    <a href="index.html" class="auth-brand">
+      <span class="auth-brand__mark">F</span>
+      <span class="auth-brand__name">Fan Hub <em>Plus</em></span>
+    </a>
+
+    <header class="auth-head">
+      <h1>Create your account</h1>
+      <p>Join millions of fans across 8 fandoms.</p>
+    </header>
+
+    <div class="auth-alert" id="formError" role="alert" style="display:none;">
+      <i class="fas fa-circle-exclamation"></i>
+      <span id="formErrorText">Something went wrong.</span>
+    </div>
+
+    <form action="#" method="POST" class="auth-form" id="registerForm" novalidate>
+
+      <div class="auth-field">
+        <label for="name">Full name</label>
+        <div class="auth-input">
+          <i class="fa-regular fa-user"></i>
+          <input type="text"
+                 id="name"
+                 name="name"
+                 placeholder="Your name"
+                 autocomplete="name"
+                 required />
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label for="email">Email address</label>
+        <div class="auth-input">
+          <i class="fa-regular fa-envelope"></i>
+          <input type="email"
+                 id="email"
+                 name="email"
+                 placeholder="you@example.com"
+                 autocomplete="email"
+                 required />
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label for="password">Password</label>
+        <div class="auth-input">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password"
+                 id="password"
+                 name="password"
+                 placeholder="Minimum 8 characters"
+                 autocomplete="new-password"
+                 required />
+          <button type="button" class="auth-toggle-pw" data-target="password" aria-label="Show password">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label for="confirm">Confirm password</label>
+        <div class="auth-input">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password"
+                 id="confirm"
+                 name="confirm"
+                 placeholder="Re-enter password"
+                 autocomplete="new-password"
+                 required />
+          <button type="button" class="auth-toggle-pw" data-target="confirm" aria-label="Show password">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <label class="auth-check">
+        <input type="checkbox" name="agree" id="agree" />
+        <span class="auth-check__box"><i class="fa-solid fa-check"></i></span>
+        <span>I agree to the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy</a></span>
+      </label>
+
+      <button type="submit" class="auth-btn" id="authBtn">
+        <span class="auth-btn__label">
+          Create Account
+          <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="auth-btn__spinner" aria-hidden="true"></span>
+      </button>
+
+    </form>
+
+    <footer class="auth-foot">
+      <p>Already have an account?
+        <a href="login.html">Sign in</a>
+      </p>
+    </footer>
+
+  </div>
+
+</main>
+
+<script src="assets/js/auth.js"></script>
+</body>
+</html> 

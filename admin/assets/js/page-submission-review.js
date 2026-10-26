@@ -1,0 +1,1 @@
+(function(){ document.getElementById('rejectBtn')?.addEventListener('click',function(e){if(!confirm('Reject this submission? The user will be notified.')) e.preventDefault();});})();

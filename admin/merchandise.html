@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Merchandise · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-merchandise.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item is-active" href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Merchandise</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Merchandise</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Merchandise</h2>
+    <p class="page-sub">Display-only showcase. No purchase flow — SRS note.</p>
+  </div>
+  <a href="merchandise-form.html" class="btn btn-primary">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add Item</span>
+  </a>
+</div>
+
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="merchSearch" placeholder="Search by name...">
+  </div>
+  <select class="input filter-select" id="categoryFilter">
+    <option value="">All categories</option>
+          <option value="anime">Anime</option>
+          <option value="comics">Comics</option>
+          <option value="cosplay">Cosplay</option>
+          <option value="gaming">Gaming</option>
+          <option value="kpop">K-Pop</option>
+          <option value="manga">Manga</option>
+          <option value="movies">Movies</option>
+          <option value="tv-shows">TV Shows</option>
+      </select>
+  <select class="input filter-select" id="tagFilter">
+    <option value="">All tags</option>
+          <option value="Apparel">Apparel</option>
+          <option value="Books">Books</option>
+          <option value="Collectible">Collectible</option>
+          <option value="Craft">Craft</option>
+          <option value="Figure">Figure</option>
+          <option value="Music">Music</option>
+          <option value="Poster">Poster</option>
+          <option value="Prop">Prop</option>
+          <option value="Statue">Statue</option>
+      </select>
+</div>
+
+<div class="merch-grid" id="merchGrid">
+      <article class="merch-card"
+             data-name="naruto hokage cloak"
+             data-category="anime"
+             data-tag="Apparel">
+
+      <div class="merch-image" style="--c: #E85D3D">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-apparel">
+            Apparel
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Naruto Hokage Cloak</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$24.99</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-1.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="elden ring replica sword"
+             data-category="gaming"
+             data-tag="Collectible">
+
+      <div class="merch-image" style="--c: #7B5FA8">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-collectible">
+            Collectible
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Elden Ring Replica Sword</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$89.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-2.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="dune collector&#x27;s poster"
+             data-category="movies"
+             data-tag="Poster">
+
+      <div class="merch-image" style="--c: #8237AC">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-poster">
+            Poster
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Dune Collector&#x27;s Poster</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$14.50</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-3.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="stranger things hoodie"
+             data-category="tv-shows"
+             data-tag="Apparel">
+
+      <div class="merch-image" style="--c: #22217A">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-apparel">
+            Apparel
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Stranger Things Hoodie</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$39.99</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-4.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="bts light stick"
+             data-category="kpop"
+             data-tag="Collectible">
+
+      <div class="merch-image" style="--c: #D96FA0">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-collectible">
+            Collectible
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">BTS Light Stick</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$55.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-5.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="batman cowl statue"
+             data-category="comics"
+             data-tag="Statue">
+
+      <div class="merch-image" style="--c: #E8A33D">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-statue">
+            Statue
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Batman Cowl Statue</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$129.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-6.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="one piece vol. 1-10 box set"
+             data-category="manga"
+             data-tag="Books">
+
+      <div class="merch-image" style="--c: #5A4578">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-books">
+            Books
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">One Piece Vol. 1-10 Box Set</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$69.99</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-7.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="cosplay foam armor kit"
+             data-category="cosplay"
+             data-tag="Craft">
+
+      <div class="merch-image" style="--c: #653C9E">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-craft">
+            Craft
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Cosplay Foam Armor Kit</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$34.50</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-8.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="jujutsu kaisen figure"
+             data-category="anime"
+             data-tag="Figure">
+
+      <div class="merch-image" style="--c: #E85D3D">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-figure">
+            Figure
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Jujutsu Kaisen Figure</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$48.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-9.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="cyberpunk 2077 jacket"
+             data-category="gaming"
+             data-tag="Apparel">
+
+      <div class="merch-image" style="--c: #7B5FA8">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-apparel">
+            Apparel
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Cyberpunk 2077 Jacket</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$79.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-10.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="spider-man web shooter"
+             data-category="comics"
+             data-tag="Prop">
+
+      <div class="merch-image" style="--c: #E8A33D">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-prop">
+            Prop
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">Spider-Man Web Shooter</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$42.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-11.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="merch-card"
+             data-name="twice album bundle"
+             data-category="kpop"
+             data-tag="Music">
+
+      <div class="merch-image" style="--c: #D96FA0">
+        <i class="fa-solid fa-bag-shopping"></i>
+                  <span class="merch-tag tag-music">
+            Music
+          </span>
+              </div>
+
+      <div class="merch-body">
+        <h3 class="merch-name">TWICE Album Bundle</h3>
+        <div class="merch-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+        </div>
+        <div class="merch-foot">
+          <span class="merch-price">$31.00</span>
+          <div class="merch-actions">
+            <a href="merchandise-form-12.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.merchandise.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+  </div>
+
+<div class="empty hide" id="noResults">
+  <i class="fa-regular fa-face-frown"></i>
+  <p>No merchandise matches your filters.</p>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-merchandise.js"></script>
+</body></html>

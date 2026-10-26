@@ -1,0 +1,1 @@
+(function(){document.getElementById('deleteBtn')?.addEventListener('click',function(e){if(!confirm('Delete this feedback? This cannot be undone.'))e.preventDefault();});})();

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Notifications · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-notifications.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Notifications</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Notifications</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Notifications</h2>
+    <p class="page-sub">Recent activity and system alerts.</p>
+  </div>
+  <button class="btn btn-ghost" id="markAllBtn">
+    <i class="fa-regular fa-circle-check"></i>
+    <span>Mark all as read</span>
+  </button>
+</div>
+
+<div class="filters-bar">
+  <select class="input filter-select" id="readFilter">
+    <option value="">All</option>
+    <option value="unread">Unread</option>
+    <option value="read">Read</option>
+  </select>
+  <select class="input filter-select" id="typeFilter">
+    <option value="">All types</option>
+    <option value="submission">Submissions</option>
+    <option value="feedback">Feedback</option>
+    <option value="user">Users</option>
+    <option value="system">System</option>
+  </select>
+</div>
+
+<div class="notif-list" id="notifList">
+      <article class="notif-card is-unread"
+             data-type="submission"
+             data-read="unread">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-info">
+        <i class="fa-solid fa-file-circle-plus"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">New submission received</p>
+        <p class="notif-text">&quot;Why Berserk Still Matters&quot; is waiting for review.</p>
+      </div>
+
+      <span class="notif-time">just now</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-unread"
+             data-type="feedback"
+             data-read="unread">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-warn">
+        <i class="fa-solid fa-comment-dots"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">New bug report</p>
+        <p class="notif-text">A user reported a notification page issue.</p>
+      </div>
+
+      <span class="notif-time">3 hours ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-unread"
+             data-type="user"
+             data-read="unread">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-ok">
+        <i class="fa-solid fa-user-plus"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">New user registered</p>
+        <p class="notif-text">Lisa Manoban joined Fan Hub Plus.</p>
+      </div>
+
+      <span class="notif-time">6 hours ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-read"
+             data-type="system"
+             data-read="read">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-neutral">
+        <i class="fa-solid fa-gear"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">Backup completed</p>
+        <p class="notif-text">Nightly backup finished successfully.</p>
+      </div>
+
+      <span class="notif-time">12 hours ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-read"
+             data-type="submission"
+             data-read="read">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-info">
+        <i class="fa-solid fa-file-circle-plus"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">Submission approved</p>
+        <p class="notif-text">&quot;Cosplay Process: Building Geralt Armor&quot; was approved.</p>
+      </div>
+
+      <span class="notif-time">1 day ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-read"
+             data-type="content"
+             data-read="read">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-info">
+        <i class="fa-solid fa-photo-film"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">Content published</p>
+        <p class="notif-text">&quot;Dune: Part Two&quot; was published to Movies.</p>
+      </div>
+
+      <span class="notif-time">1 day ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-read"
+             data-type="feedback"
+             data-read="read">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-warn">
+        <i class="fa-solid fa-comment-dots"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">Feedback resolved</p>
+        <p class="notif-text">Query about submissions marked as resolved.</p>
+      </div>
+
+      <span class="notif-time">2 days ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+      <article class="notif-card is-read"
+             data-type="system"
+             data-read="read">
+
+      <span class="notif-dot"></span>
+
+      <span class="notif-icon tone-neutral">
+        <i class="fa-solid fa-gear"></i>
+      </span>
+
+      <div class="notif-body">
+        <p class="notif-title">Scheduled maintenance</p>
+        <p class="notif-text">Maintenance window planned for next weekend.</p>
+      </div>
+
+      <span class="notif-time">3 days ago</span>
+
+      <button class="icon-btn notif-close" aria-label="Dismiss" data-dismiss>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </article>
+  </div>
+
+<div class="empty hide" id="noResults">
+  <i class="fa-regular fa-bell-slash"></i>
+  <p>No notifications match your filters.</p>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-notifications.js"></script>
+</body></html>

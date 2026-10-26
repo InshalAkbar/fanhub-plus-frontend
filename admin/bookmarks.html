@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bookmarks · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-bookmarks.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item is-active" href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Bookmarks</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Bookmarks</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Bookmarks</h2>
+    <p class="page-sub">User bookmarks and saved content.</p>
+  </div>
+</div>
+
+<!-- stats -->
+<section class="mini-stats">
+  <div class="mini-stat">
+    <span class="mini-stat-label">Total Bookmarks</span>
+    <span class="mini-stat-value">12.4K</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">With Notes</span>
+    <span class="mini-stat-value">3.2K</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">This Week</span>
+    <span class="mini-stat-value ok">+284</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Avg per User</span>
+    <span class="mini-stat-value">8.2</span>
+  </div>
+</section>
+
+<!-- top bookmarked chart -->
+<div class="panel top-chart">
+  <div class="panel-head">
+    <div>
+      <h3 class="panel-title">Top Bookmarked Content</h3>
+      <p class="panel-sub">Most saved items across the platform</p>
+    </div>
+  </div>
+  <div class="panel-body">
+    <canvas id="topChart" height="90"></canvas>
+  </div>
+</div>
+
+<!-- filters -->
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="bookmarkSearch" placeholder="Search by user or content...">
+  </div>
+  <select class="input filter-select" id="categoryFilter">
+    <option value="">All categories</option>
+    <option value="anime">Anime</option>
+    <option value="gaming">Gaming</option>
+    <option value="movies">Movies</option>
+    <option value="tv-shows">TV Shows</option>
+    <option value="kpop">K-Pop</option>
+    <option value="comics">Comics</option>
+    <option value="manga">Manga</option>
+    <option value="cosplay">Cosplay</option>
+  </select>
+  <select class="input filter-select" id="typeFilter">
+    <option value="">All types</option>
+    <option value="article">Article</option>
+    <option value="video">Video</option>
+    <option value="audio">Audio</option>
+    <option value="image">Image</option>
+  </select>
+</div>
+
+<!-- table -->
+<div class="panel">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Bookmarked Item</th>
+          <th>Type</th>
+          <th>Note</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="bookmarksTableBody">
+                  <tr data-user="test user"
+              data-content="naruto: the final valley"
+              data-category="Anime"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Naruto: The Final Valley</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note">Looking forward to this one.</span>
+                          </td>
+            <td><span class="date-txt">Oct 18, 2026</span></td>
+          </tr>
+                  <tr data-user="test user"
+              data-content="top 10 anime openings of the decade"
+              data-category="Anime"
+              data-type="Article">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Top 10 Anime Openings of the Decade</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Article">Article</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 17, 2026</span></td>
+          </tr>
+                  <tr data-user="aria stark"
+              data-content="breaking bad"
+              data-category="TV Shows"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Breaking Bad</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note">Rewatch soon.</span>
+                          </td>
+            <td><span class="date-txt">Oct 16, 2026</span></td>
+          </tr>
+                  <tr data-user="aria stark"
+              data-content="walter white"
+              data-category="TV Shows"
+              data-type="Character">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Walter White</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Character">Character</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 15, 2026</span></td>
+          </tr>
+                  <tr data-user="ken kaneki"
+              data-content="one piece"
+              data-category="Manga"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">KK</span>
+                <span>Ken Kaneki</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>One Piece</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note">Must read.</span>
+                          </td>
+            <td><span class="date-txt">Oct 14, 2026</span></td>
+          </tr>
+                  <tr data-user="geralt rivia"
+              data-content="elden ring: lands between"
+              data-category="Gaming"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">GR</span>
+                <span>Geralt Rivia</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Elden Ring: Lands Between</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 13, 2026</span></td>
+          </tr>
+                  <tr data-user="mikasa ackerman"
+              data-content="cosplay foam armor kit"
+              data-category="Cosplay"
+              data-type="Merchandise">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">MA</span>
+                <span>Mikasa Ackerman</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Cosplay Foam Armor Kit</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Merchandise">Merchandise</span>
+            </td>
+            <td>
+                              <span class="bm-note">Want to try this build.</span>
+                          </td>
+            <td><span class="date-txt">Oct 12, 2026</span></td>
+          </tr>
+                  <tr data-user="jinx powder"
+              data-content="watchmen"
+              data-category="Comics"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">JP</span>
+                <span>Jinx Powder</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Watchmen</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 11, 2026</span></td>
+          </tr>
+                  <tr data-user="peter parker"
+              data-content="watchmen explained: symbols and themes"
+              data-category="Comics"
+              data-type="Article">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">PP</span>
+                <span>Peter Parker</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Watchmen Explained: Symbols and Themes</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Article">Article</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 10, 2026</span></td>
+          </tr>
+                  <tr data-user="lisa manoban"
+              data-content="bts: music archive"
+              data-category="K-Pop"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">LM</span>
+                <span>Lisa Manoban</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>BTS: Music Archive</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 09, 2026</span></td>
+          </tr>
+                  <tr data-user="test user"
+              data-content="naruto hokage cloak"
+              data-category="Anime"
+              data-type="Merchandise">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Naruto Hokage Cloak</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Merchandise">Merchandise</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 08, 2026</span></td>
+          </tr>
+                  <tr data-user="aria stark"
+              data-content="stranger things: a season-by-season recap"
+              data-category="TV Shows"
+              data-type="Article">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Stranger Things: A Season-by-Season Recap</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Article">Article</span>
+            </td>
+            <td>
+                              <span class="bm-note">Recap before new season.</span>
+                          </td>
+            <td><span class="date-txt">Oct 07, 2026</span></td>
+          </tr>
+                  <tr data-user="ken kaneki"
+              data-content="luffy"
+              data-category="Manga"
+              data-type="Character">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">KK</span>
+                <span>Ken Kaneki</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Luffy</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Character">Character</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 06, 2026</span></td>
+          </tr>
+                  <tr data-user="mikasa ackerman"
+              data-content="zero two cosplay showcase"
+              data-category="Cosplay"
+              data-type="Content">
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">MA</span>
+                <span>Mikasa Ackerman</span>
+              </div>
+            </td>
+            <td>
+              <div class="bm-cell">
+                <span class="bm-icon" style="--c: #8237AC">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <strong>Zero Two Cosplay Showcase</strong>
+              </div>
+            </td>
+            <td>
+              <span class="type-pill type-Content">Content</span>
+            </td>
+            <td>
+                              <span class="bm-note empty">—</span>
+                          </td>
+            <td><span class="date-txt">Oct 05, 2026</span></td>
+          </tr>
+              </tbody>
+    </table>
+  </div>
+
+  <div class="empty hide" id="noResults">
+    <i class="fa-regular fa-bookmark"></i>
+    <p>No bookmarks match your filters.</p>
+  </div>
+
+  <div class="pagination">
+    <span class="page-info">Showing <strong>1–8</strong> of <strong>12,480</strong></span>
+    <div class="page-controls">
+      <button class="page-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="page-btn is-active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-bookmarks.js"></script>
+</body></html>

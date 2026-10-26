@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>User Details · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-user-details.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item is-active" href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">User Details</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="users.html">Users</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Jinx Powder</span>
+</nav>
+
+<!-- profile header -->
+<article class="user-profile">
+
+  <div class="user-profile-main">
+    <span class="avatar avatar-lg">JP</span>
+    <div class="user-info">
+      <h3>Jinx Powder</h3>
+      <p>jinx@zaun.io</p>
+      <div class="user-tags">
+        <span class="role-pill role-user">User</span>
+        <span class="status-badge ok">Active</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-profile-stats">
+    <div>
+      <strong>1</strong>
+      <span>Bookmarks</span>
+    </div>
+    <div>
+      <strong>1</strong>
+      <span>Submissions</span>
+    </div>
+    <div>
+      <strong>1</strong>
+      <span>Feedback</span>
+    </div>
+  </div>
+
+  <div class="user-profile-actions">
+    <a href="users.html" class="btn btn-ghost">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Back</span>
+    </a>
+    <button class="btn btn-ghost" id="banUser">
+      <i class="fa-solid fa-ban"></i>
+      <span>Ban</span>
+    </button>
+    <button class="btn btn-primary" id="editUser">
+      <i class="fa-regular fa-pen-to-square"></i>
+      <span>Edit</span>
+    </button>
+  </div>
+
+</article>
+
+<!-- info strip -->
+<div class="user-info-strip">
+  <div class="info-item">
+    <i class="fa-regular fa-calendar"></i>
+    <div>
+      <span class="info-label">Joined</span>
+      <span class="info-value">Mar 19, 2026</span>
+    </div>
+  </div>
+  <div class="info-item">
+    <i class="fa-solid fa-location-dot"></i>
+    <div>
+      <span class="info-label">Country</span>
+      <span class="info-value">Pakistan</span>
+    </div>
+  </div>
+  <div class="info-item info-item-wide">
+    <i class="fa-regular fa-comment"></i>
+    <div>
+      <span class="info-label">Bio</span>
+      <span class="info-value">Chaos, comics and K-Pop.</span>
+    </div>
+  </div>
+</div>
+
+<!-- tabs -->
+<div class="tabs">
+  <button class="tab is-active" data-tab="activity">Activity</button>
+  <button class="tab" data-tab="bookmarks">Bookmarks</button>
+  <button class="tab" data-tab="submissions">Submissions</button>
+</div>
+
+<!-- panels -->
+<div class="tab-panel is-active" data-panel="activity">
+  <ul class="timeline">
+          <li>
+        <span class="timeline-dot"></span>
+        <div class="timeline-body">
+          <p>Submitted &quot;Fan Art: Jinx and Vi&quot;</p>
+          <span class="timeline-when">11 days ago</span>
+        </div>
+      </li>
+          <li>
+        <span class="timeline-dot"></span>
+        <div class="timeline-body">
+          <p>Sent query feedback</p>
+          <span class="timeline-when">9 days ago</span>
+        </div>
+      </li>
+      </ul>
+</div>
+
+<div class="tab-panel" data-panel="bookmarks">
+  <ul class="list">
+          <li class="list-row">
+        <span class="list-icon tone-info">
+          <i class="fa-regular fa-bookmark"></i>
+        </span>
+        <div class="list-main">
+          <p class="list-title">Watchmen</p>
+          <p class="list-meta">
+            <span class="tag">Content</span>
+            <span class="dot">·</span>
+            8 days ago
+          </p>
+        </div>
+      </li>
+      </ul>
+</div>
+
+<div class="tab-panel" data-panel="submissions">
+  <div class="empty">
+    <i class="fa-regular fa-folder-open"></i>
+    <p>No submissions yet.</p>
+  </div>
+</div>
+
+<!-- edit modal -->
+<div class="modal" id="editModal" aria-hidden="true">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-panel">
+    <header class="modal-head">
+      <h3>Edit User</h3>
+      <button class="icon-btn" data-close aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </header>
+    <div class="modal-body">
+      <form class="form-grid" data-static="1" data-action="admin.users.update">
+ <input type="hidden" name="_method" value="PUT">
+        <div class="field">
+          <label>Full name</label>
+          <input class="input" name="name" type="text" value="Jinx Powder">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input class="input" name="email" type="email" value="jinx@zaun.io">
+        </div>
+        <div class="field">
+          <label>Role</label>
+          <select class="input" name="role">
+            <option selected>User</option>
+            <option >Editor</option>
+            <option >Admin</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" data-close>Cancel</button>
+      <button class="btn btn-primary" data-close>
+        <i class="fa-solid fa-check"></i>
+        <span>Save Changes</span>
+      </button>
+    </footer>
+  </div>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-user-details.js"></script>
+</body></html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dashboard · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-dashboard.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item is-active" href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Dashboard</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+<script>
+window.FanHubAdminDashboard = {
+  activity: {
+    labels: ["Thu","Fri","Sat","Sun","Mon","Tue","Wed"],
+    visitors: [820,940,1210,1380,990,1120,1260],
+    users: [3,5,8,6,4,7,9],
+    chatbot: [22,31,40,38,27,35,44]
+  },
+  categories: [{"id":1,"slug":"anime","name":"Anime","icon":"fa-solid fa-dragon","desc":"Japanese animation series and films","count":6,"trend":14,"active":true},{"id":2,"slug":"gaming","name":"Gaming","icon":"fa-solid fa-gamepad","desc":"Video games across all platforms","count":6,"trend":9,"active":true},{"id":3,"slug":"movies","name":"Movies","icon":"fa-solid fa-film","desc":"Feature films from every genre","count":6,"trend":12,"active":true},{"id":4,"slug":"tv-shows","name":"TV Shows","icon":"fa-solid fa-tv","desc":"Series and streaming originals","count":5,"trend":7,"active":true},{"id":5,"slug":"kpop","name":"K-Pop","icon":"fa-solid fa-music","desc":"Korean pop music and artists","count":6,"trend":18,"active":true},{"id":6,"slug":"comics","name":"Comics","icon":"fa-solid fa-mask","desc":"Western comic books and superheroes","count":6,"trend":-3,"active":true},{"id":7,"slug":"manga","name":"Manga","icon":"fa-solid fa-book-open","desc":"Japanese manga and light novels","count":5,"trend":6,"active":true},{"id":8,"slug":"cosplay","name":"Cosplay","icon":"fa-solid fa-user-astronaut","desc":"Costume design and cosplay culture","count":6,"trend":11,"active":true}]
+};
+</script>
+
+
+<!-- Breadcrumbs -->
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Dashboard</span>
+</nav>
+
+<!-- Page header -->
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Good afternoon, Admin.</h2>
+    <p class="page-sub">Here's what's happening across Fan Hub Plus today.</p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-ghost" type="button">
+      <i class="fa-solid fa-download"></i>
+      <span>Export</span>
+    </button>
+    <a href="article-form.html" class="btn btn-primary">
+      <i class="fa-solid fa-plus"></i>
+      <span>New Content</span>
+    </a>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats-grid" aria-label="Key metrics">
+
+  <article class="stat-card">
+    <div class="stat-icon" style="--tone:#8237AC">
+      <i class="fa-solid fa-users"></i>
+    </div>
+    <div class="stat-body">
+      <span class="stat-label">Total Users</span>
+      <span class="stat-value">9</span>
+      <span class="stat-trend up">
+        <i class="fa-solid fa-arrow-trend-up"></i> +12.4%
+      </span>
+    </div>
+  </article>
+
+  <article class="stat-card">
+    <div class="stat-icon" style="--tone:#653C9E">
+      <i class="fa-solid fa-rectangle-list"></i>
+    </div>
+    <div class="stat-body">
+      <span class="stat-label">Content Items</span>
+      <span class="stat-value">46</span>
+      <span class="stat-trend up">
+        <i class="fa-solid fa-arrow-trend-up"></i> +8.1%
+      </span>
+    </div>
+  </article>
+
+  <article class="stat-card">
+    <div class="stat-icon" style="--tone:#6F3788">
+      <i class="fa-solid fa-inbox"></i>
+    </div>
+    <div class="stat-body">
+      <span class="stat-label">Pending Submissions</span>
+      <span class="stat-value">5</span>
+      <span class="stat-trend warn">
+        <i class="fa-solid fa-clock"></i> Awaiting review
+      </span>
+    </div>
+  </article>
+
+  <article class="stat-card">
+    <div class="stat-icon" style="--tone:#22217A">
+      <i class="fa-solid fa-robot"></i>
+    </div>
+    <div class="stat-body">
+      <span class="stat-label">Chatbot Queries</span>
+      <span class="stat-value">707</span>
+      <span class="stat-trend up">
+        <i class="fa-solid fa-arrow-trend-up"></i> +21.7%
+      </span>
+    </div>
+  </article>
+
+</section>
+
+<!-- CHARTS -->
+<section class="charts-row">
+
+  <!-- Activity chart -->
+  <article class="panel">
+    <header class="panel-head">
+      <div>
+        <h3 class="panel-title">Platform Activity</h3>
+        <p class="panel-sub">Visitors vs registered users — last 7 days</p>
+      </div>
+      <div class="panel-tabs">
+        <button class="tab is-active" data-range="7d">7D</button>
+        <button class="tab" data-range="30d">30D</button>
+        <button class="tab" data-range="90d">90D</button>
+      </div>
+    </header>
+    <div class="panel-body">
+      <canvas id="activityChart" height="120"></canvas>
+    </div>
+  </article>
+
+  <!-- Category distribution -->
+  <article class="panel">
+    <header class="panel-head">
+      <div>
+        <h3 class="panel-title">Content by Category</h3>
+        <p class="panel-sub">Distribution across 8 fandoms</p>
+      </div>
+    </header>
+    <div class="panel-body">
+      <canvas id="categoryChart" height="180"></canvas>
+    </div>
+  </article>
+
+</section>
+
+<!-- BOTTOM -->
+<section class="bottom-row">
+
+  <!-- Popular categories list -->
+  <article class="panel">
+    <header class="panel-head">
+      <div>
+        <h3 class="panel-title">Popular Categories</h3>
+        <p class="panel-sub">By content volume</p>
+      </div>
+      <a href="categories.html" class="link-sm">Manage</a>
+    </header>
+    <div class="panel-body">
+      <ul class="cat-list">
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #E85D3D"></span>
+            <span class="cat-name">Anime</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 3%;
+                           background: #E85D3D"></span>
+            </div>
+            <span class="cat-count">6</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              14%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #7B5FA8"></span>
+            <span class="cat-name">Gaming</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 3%;
+                           background: #7B5FA8"></span>
+            </div>
+            <span class="cat-count">6</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              9%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #8237AC"></span>
+            <span class="cat-name">Movies</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 3%;
+                           background: #8237AC"></span>
+            </div>
+            <span class="cat-count">6</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              12%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #22217A"></span>
+            <span class="cat-name">TV Shows</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 2%;
+                           background: #22217A"></span>
+            </div>
+            <span class="cat-count">5</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              7%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #D96FA0"></span>
+            <span class="cat-name">K-Pop</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 3%;
+                           background: #D96FA0"></span>
+            </div>
+            <span class="cat-count">6</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              18%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #E8A33D"></span>
+            <span class="cat-name">Comics</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 3%;
+                           background: #E8A33D"></span>
+            </div>
+            <span class="cat-count">6</span>
+            <span class="cat-trend down">
+              <i class="fa-solid fa-arrow-down"></i>
+              3%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #5A4578"></span>
+            <span class="cat-name">Manga</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 2%;
+                           background: #5A4578"></span>
+            </div>
+            <span class="cat-count">5</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              6%
+            </span>
+          </li>
+                  <li class="cat-row">
+            <span class="cat-dot" style="background: #653C9E"></span>
+            <span class="cat-name">Cosplay</span>
+            <div class="cat-bar">
+              <span class="cat-fill"
+                    style="width: 3%;
+                           background: #653C9E"></span>
+            </div>
+            <span class="cat-count">6</span>
+            <span class="cat-trend up">
+              <i class="fa-solid fa-arrow-up"></i>
+              11%
+            </span>
+          </li>
+              </ul>
+    </div>
+  </article>
+
+  <!-- Recent submissions -->
+  <article class="panel">
+    <header class="panel-head">
+      <div>
+        <h3 class="panel-title">Recent Submissions</h3>
+        <p class="panel-sub">Fan content awaiting moderation</p>
+      </div>
+      <a href="submissions.html" class="link-sm">View all</a>
+    </header>
+    <div class="panel-body no-pad">
+      <ul class="list">
+                  <li class="list-row">
+            <span class="list-dot" style="background: #8237AC"></span>
+            <div class="list-main">
+              <p class="list-title">Top 5 Sci-Fi Movies You Missed</p>
+              <p class="list-meta">
+                <i class="fa-regular fa-user"></i> Aria Stark
+                <span class="dot">·</span>
+                just now
+              </p>
+            </div>
+            <span class="status-badge warn">Pending</span>
+          </li>
+                  <li class="list-row">
+            <span class="list-dot" style="background: #8237AC"></span>
+            <div class="list-main">
+              <p class="list-title">Anime Soundtrack Playlist</p>
+              <p class="list-meta">
+                <i class="fa-regular fa-user"></i> Test User
+                <span class="dot">·</span>
+                just now
+              </p>
+            </div>
+            <span class="status-badge warn">Pending</span>
+          </li>
+                  <li class="list-row">
+            <span class="list-dot" style="background: #8237AC"></span>
+            <div class="list-main">
+              <p class="list-title">Why Berserk Still Matters</p>
+              <p class="list-meta">
+                <i class="fa-regular fa-user"></i> Ken Kaneki
+                <span class="dot">·</span>
+                1 day ago
+              </p>
+            </div>
+            <span class="status-badge warn">Pending</span>
+          </li>
+                  <li class="list-row">
+            <span class="list-dot" style="background: #8237AC"></span>
+            <div class="list-main">
+              <p class="list-title">My Naruto Final Valley Fan Theory</p>
+              <p class="list-meta">
+                <i class="fa-regular fa-user"></i> Aria Stark
+                <span class="dot">·</span>
+                2 days ago
+              </p>
+            </div>
+            <span class="status-badge warn">Pending</span>
+          </li>
+                  <li class="list-row">
+            <span class="list-dot" style="background: #8237AC"></span>
+            <div class="list-main">
+              <p class="list-title">Best Elden Ring Builds for Beginners</p>
+              <p class="list-meta">
+                <i class="fa-regular fa-user"></i> Geralt Rivia
+                <span class="dot">·</span>
+                3 days ago
+              </p>
+            </div>
+            <span class="status-badge warn">Pending</span>
+          </li>
+              </ul>
+    </div>
+  </article>
+
+  <!-- Recent feedback -->
+  <article class="panel">
+    <header class="panel-head">
+      <div>
+        <h3 class="panel-title">Recent Feedback</h3>
+        <p class="panel-sub">Bug reports, suggestions & queries</p>
+      </div>
+      <a href="feedback.html" class="link-sm">View all</a>
+    </header>
+    <div class="panel-body no-pad">
+      <ul class="list">
+                  <li class="list-row">
+            <span class="list-icon tone-danger">
+              <i class="fa-solid fa-bug"></i>
+            </span>
+            <div class="list-main">
+              <p class="list-title">The notifications page does not load on mobile Safari.</p>
+              <p class="list-meta">
+                <span class="tag">Bug</span>
+                <span class="dot">·</span>
+                1 day ago
+              </p>
+            </div>
+          </li>
+                  <li class="list-row">
+            <span class="list-icon tone-warn">
+              <i class="fa-solid fa-lightbulb"></i>
+            </span>
+            <div class="list-main">
+              <p class="list-title">Please add a dark/light theme toggle to the profile page.</p>
+              <p class="list-meta">
+                <span class="tag">Suggestion</span>
+                <span class="dot">·</span>
+                2 days ago
+              </p>
+            </div>
+          </li>
+                  <li class="list-row">
+            <span class="list-icon tone-info">
+              <i class="fa-solid fa-circle-question"></i>
+            </span>
+            <div class="list-main">
+              <p class="list-title">How do I submit a fan article for review?</p>
+              <p class="list-meta">
+                <span class="tag">Query</span>
+                <span class="dot">·</span>
+                4 days ago
+              </p>
+            </div>
+          </li>
+                  <li class="list-row">
+            <span class="list-icon tone-warn">
+              <i class="fa-solid fa-lightbulb"></i>
+            </span>
+            <div class="list-main">
+              <p class="list-title">Could you add more filters to the events calendar?</p>
+              <p class="list-meta">
+                <span class="tag">Suggestion</span>
+                <span class="dot">·</span>
+                5 days ago
+              </p>
+            </div>
+          </li>
+                  <li class="list-row">
+            <span class="list-icon tone-danger">
+              <i class="fa-solid fa-bug"></i>
+            </span>
+            <div class="list-main">
+              <p class="list-title">The character page sometimes shows a blank image.</p>
+              <p class="list-meta">
+                <span class="tag">Bug</span>
+                <span class="dot">·</span>
+                6 days ago
+              </p>
+            </div>
+          </li>
+              </ul>
+    </div>
+  </article>
+
+</section>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-dashboard.js"></script>
+</body></html>

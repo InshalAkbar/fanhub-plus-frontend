@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Articles | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('fanhub-theme');
+    if (saved === 'light') document.documentElement.classList.add('light-mode');
+    else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/shared.css" />
+<link rel="stylesheet" href="assets/css/articles.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+<body class="fh-app fh-articles-page">
+
+<div class="fh-progress" id="fhProgressBar" aria-hidden="true"></div>
+<header class="fh-navbar" id="fhNavbar">
+  <div class="fh-navbar__inner" id="fhNavbarInner">
+    <span class="fh-navbar__glow" aria-hidden="true"></span>
+    <span class="fh-navbar__edge" aria-hidden="true"></span>
+    <span class="fh-navbar__particles" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>
+
+      <nav class="fh-nav" id="fhNav" aria-label="Primary">
+      <span class="fh-nav__pill" id="fhNavPill" aria-hidden="true"></span>
+
+      <a href="dashboard.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Home
+      </a>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="movies">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Movies
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="movies.html" class="fh-dropdown__item"><i class="fas fa-film"></i> All Movies</a>
+          <a href="movies.html?sort=latest" class="fh-dropdown__item"><i class="fas fa-clock-rotate-left"></i> Latest</a>
+          <a href="movies.html?sort=popular" class="fh-dropdown__item"><i class="fas fa-fire"></i> Most Watched</a>
+          <a href="movies.html?sort=upcoming" class="fh-dropdown__item"><i class="fas fa-calendar-plus"></i> Upcoming</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="tv">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> TV Series
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="tv-shows.html" class="fh-dropdown__item"><i class="fas fa-tv"></i> All Series</a>
+          <a href="tv-shows.html?sort=latest" class="fh-dropdown__item"><i class="fas fa-clock-rotate-left"></i> Latest</a>
+          <a href="tv-shows.html?sort=popular" class="fh-dropdown__item"><i class="fas fa-fire"></i> Most Watched</a>
+          <a href="tv-shows.html?sort=top" class="fh-dropdown__item"><i class="fas fa-star"></i> Top Rated</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="categories">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Categories
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="anime.html" class="fh-dropdown__item"><i class="fas fa-dragon"></i> Anime</a>
+          <a href="gaming.html" class="fh-dropdown__item"><i class="fas fa-gamepad"></i> Gaming</a>
+          <a href="kpop.html" class="fh-dropdown__item"><i class="fas fa-music"></i> K-Pop</a>
+          <a href="comics.html" class="fh-dropdown__item"><i class="fas fa-book-open"></i> Comics</a>
+          <a href="manga.html" class="fh-dropdown__item"><i class="fas fa-scroll"></i> Manga</a>
+          <a href="cosplay.html" class="fh-dropdown__item"><i class="fas fa-user-ninja"></i> Cosplay</a>
+          <a href="merchandise.html" class="fh-dropdown__item"><i class="fas fa-bag-shopping"></i> Merchandise</a>
+        </div>
+      </div>
+
+      <a href="events.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Events
+      </a>
+
+      <a href="articles.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Articles
+      </a>
+
+      <a href="characters.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Characters
+      </a>
+
+      <a href="feedback.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Feedback
+      </a>
+    </nav>
+
+    <div class="fh-nav-actions">
+      <div class="fh-search-wrap" id="fhSearchWrap">
+        <div class="fh-search-inline">
+          <i class="fas fa-magnifying-glass fh-search-inline__icon" aria-hidden="true"></i>
+          <input type="text" id="fhSearchInput" class="fh-search-inline__input"
+                 placeholder="Search..." autocomplete="off"
+                 aria-label="Search" />
+          <kbd class="fh-search-inline__kbd">⌘K</kbd>
+        </div>
+        <div class="fh-search-results hide-scrollbar" id="fhSearchResults" role="listbox"></div>
+      </div>
+
+      <button class="fh-theme-toggle" id="fhThemeToggle" type="button"
+              aria-label="Switch to light mode" aria-pressed="false">
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--sun" aria-hidden="true"><i class="fas fa-sun"></i></span>
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--moon" aria-hidden="true"><i class="fas fa-moon"></i></span>
+      </button>
+
+      <div class="fh-nav__item fh-nav__item--dropdown fh-user-menu" data-dropdown="user">
+        <button class="fh-user-menu__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-profile-btn__inner" id="fhUserAvatar">Y</span>
+        </button>
+        <div class="fh-dropdown fh-dropdown--user" role="menu">
+          <a href="dashboard.html" class="fh-dropdown__item is-active"><i class="fas fa-gauge"></i> Dashboard</a>
+          <a href="profile.html" class="fh-dropdown__item"><i class="fas fa-user"></i> Profile</a>
+          <a href="my-bookmarks.html" class="fh-dropdown__item"><i class="fas fa-bookmark"></i> Bookmarks</a>
+          <a href="my-submissions.html" class="fh-dropdown__item"><i class="fas fa-upload"></i> My Submissions</a>
+          <a href="feedback.html" class="fh-dropdown__item"><i class="fas fa-comment-dots"></i> My Feedback</a>
+          <a href="notifications.html" class="fh-dropdown__item"><i class="fas fa-bell"></i> Notifications</a>
+          <div class="fh-dropdown__divider"></div>
+          <a href="logout.html" class="fh-dropdown__item fh-dropdown__item--danger"><i class="fas fa-right-from-bracket"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="fh-menu-toggle" id="fhMenuToggle" aria-label="Toggle menu"
+            aria-expanded="false" aria-controls="fhMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="fh-mobile-menu" id="fhMobileMenu">
+    <a href="dashboard.html" class="fh-mobile-menu__link">Home</a>
+    <a href="dashboard.html" class="fh-mobile-menu__link is-active">Dashboard</a>
+    <a href="articles.html" class="fh-mobile-menu__link">Articles</a>
+    <a href="feedback.html" class="fh-mobile-menu__link">Feedback</a>
+    <a href="movies.html" class="fh-mobile-menu__link">Movies</a>
+    <a href="tv-shows.html" class="fh-mobile-menu__link">TV Series</a>
+    <a href="events.html" class="fh-mobile-menu__link">Events</a>
+    <a href="characters.html" class="fh-mobile-menu__link">Characters</a>
+    <a href="my-bookmarks.html" class="fh-mobile-menu__link">Bookmarks</a>
+    <a href="profile.html" class="fh-mobile-menu__link">Profile</a>
+    <a href="logout.html" class="fh-cta fh-cta--full">Logout</a>
+    <a href="merchandise.html" class="fh-cta fh-cta--full">Merchandise</a>
+  </div>
+</header>
+
+<link rel="stylesheet" href="assets/css/bot-widget.css" />
+<script src="assets/js/bot-widget.js" defer></script>
+
+<body>
+<main class="fh-art" id="fhArt">
+
+
+  <section class="fh-art__hero" id="fhArtHero">
+    <div class="fh-art__hero-bg" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="fh-art__hero-inner">
+      <div class="fh-art__hero-badge">
+        <i class="fas fa-newspaper"></i> Fandom Magazine
+      </div>
+      <h1 class="fh-art__hero-title">
+        Stories from every<br>
+        corner of the fandom
+      </h1>
+      <p class="fh-art__hero-desc">
+        Reviews, guides, deep dives, and editorials — written by fans, for fans.
+      </p>
+
+      <div class="fh-art__hero-stats">
+        <div class="fh-art__hero-stat">
+          <div class="fh-art__hero-stat-value">248</div>
+          <div class="fh-art__hero-stat-label">Articles</div>
+        </div>
+        <div class="fh-art__hero-stat">
+          <div class="fh-art__hero-stat-value">42</div>
+          <div class="fh-art__hero-stat-label">Authors</div>
+        </div>
+        <div class="fh-art__hero-stat">
+          <div class="fh-art__hero-stat-value">86K</div>
+          <div class="fh-art__hero-stat-label">Readers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fh-art__section" data-reveal>
+    <div class="fh-art__section-head">
+      <div>
+        <h2 class="fh-art__section-title"><i class="fas fa-star"></i> Featured</h2>
+        <p class="fh-art__section-sub">Hand-picked reads this week</p>
+      </div>
+      <a href="articles.html#fhArtFilters" class="fh-art__section-link">
+        View All <i class="fas fa-chevron-right"></i>
+      </a>
+    </div>
+
+    <div class="fh-art__featured" id="fhArtFeatured"></div>
+  </section>
+
+
+  <section class="fh-art__filters" id="fhArtFilters" data-reveal>
+    <div class="fh-art__filter-search">
+      <i class="fas fa-magnifying-glass"></i>
+      <input type="text" id="fhArtSearch" placeholder="Search articles, authors, topics..." autocomplete="off" />
+    </div>
+
+    <div class="fh-art__filter-chips" id="fhArtChips">
+      <button class="fh-art__chip is-active" data-cat="all"><i class="fas fa-layer-group"></i> All</button>
+      <button class="fh-art__chip" data-cat="anime"><i class="fas fa-dragon"></i> Anime</button>
+      <button class="fh-art__chip" data-cat="gaming"><i class="fas fa-gamepad"></i> Gaming</button>
+      <button class="fh-art__chip" data-cat="kpop"><i class="fas fa-music"></i> K-Pop</button>
+      <button class="fh-art__chip" data-cat="movies"><i class="fas fa-film"></i> Movies</button>
+      <button class="fh-art__chip" data-cat="tv"><i class="fas fa-tv"></i> TV</button>
+      <button class="fh-art__chip" data-cat="comics"><i class="fas fa-book-open"></i> Comics</button>
+      <button class="fh-art__chip" data-cat="manga"><i class="fas fa-scroll"></i> Manga</button>
+    </div>
+
+    <div class="fh-art__filter-sort">
+      <label for="fhArtSort">Sort:</label>
+      <select id="fhArtSort">
+        <option value="recent">Latest</option>
+        <option value="popular">Most Read</option>
+        <option value="likes">Most Liked</option>
+        <option value="title">A–Z</option>
+      </select>
+    </div>
+  </section>
+
+
+  <section class="fh-art__section" data-reveal>
+    <div class="fh-art__section-head">
+      <div>
+        <h2 class="fh-art__section-title"><i class="fas fa-book-open"></i> All Articles</h2>
+        <p class="fh-art__section-sub"><span id="fhArtCount">0</span> articles found</p>
+      </div>
+    </div>
+
+    <div class="fh-art__grid" id="fhArtGrid"></div>
+
+    <div class="fh-art__empty" id="fhArtEmpty" style="display:none;">
+      <i class="fas fa-newspaper"></i>
+      <h3>No articles found</h3>
+      <p>Try a different filter or search term.</p>
+    </div>
+
+    <div class="fh-art__load-wrap" id="fhArtLoadWrap">
+      <button class="fh-art__load-more" id="fhArtLoadMore" type="button">
+        <i class="fas fa-arrow-down"></i> Load More
+      </button>
+    </div>
+  </section>
+
+
+  <section class="fh-art__cta" data-reveal>
+    <div class="fh-art__cta-bg" aria-hidden="true"></div>
+    <div class="fh-art__cta-inner">
+      <div>
+        <h3 class="fh-art__cta-title">Got something to say?</h3>
+        <p class="fh-art__cta-desc">Share your review, theory, or deep dive with 86K+ readers.</p>
+      </div>
+      <a href="fan-submit.html" class="fh-art__cta-btn">
+        <i class="fas fa-pen-fancy"></i> Write for Us
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fh-footer" id="fhFooter">
+  <div class="fh-footer__inner">
+    <div class="fh-footer__grid">
+      <div class="fh-footer__brand">
+        <h3>Fan Hub Plus</h3>
+        <p>Your all-in-one destination for Anime, Movies, TV Series, K-Pop, Gaming, and Comics.</p>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Series</a></li>
+          <li><a href="anime.html">Anime</a></li>
+          <li><a href="characters.html">Characters</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="fan-submit.html">Fan Art</a></li>
+          <li><a href="cosplay.html">Cosplay</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="articles.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fh-footer__bottom">
+      <p>© 2026 Fan Hub Plus. All rights reserved.</p>
+      <div class="fh-footer__social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/articles.js"></script>
+
+</body>
+</html>

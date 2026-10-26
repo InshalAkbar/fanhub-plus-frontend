@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Comics | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('fanhub-theme');
+    if (saved === 'light') document.documentElement.classList.add('light-mode');
+    else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://picsum.photos" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/shared.css" />
+<link rel="stylesheet" href="assets/css/comics.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+
+<link rel="stylesheet" href="assets/css/bot-widget.css" />
+<script src="assets/js/bot-widget.js" defer></script>
+<body class="fh-app cm-app">
+
+<div class="fh-progress" id="fhProgressBar" aria-hidden="true"></div>
+
+
+<header class="fh-navbar" id="fhNavbar">
+  <div class="fh-navbar__inner" id="fhNavbarInner">
+    <span class="fh-navbar__glow" aria-hidden="true"></span>
+    <span class="fh-navbar__edge" aria-hidden="true"></span>
+    <span class="fh-navbar__particles" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>
+
+    <a href="index.html" class="fh-brand">
+      <span class="fh-brand__mark-wrap">
+        <span class="fh-brand__ring" aria-hidden="true"></span>
+        <span class="fh-brand__mark" aria-hidden="true"></span>
+      </span>
+      <span class="fh-brand__name">Fan Hub Plus</span>
+      <span class="fh-brand__status">Live</span>
+    </a>
+
+    <nav class="fh-nav" id="fhNav" aria-label="Primary">
+      <span class="fh-nav__pill" id="fhNavPill" aria-hidden="true"></span>
+
+      <a href="index.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Home
+      </a>
+
+      <a href="movies.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Movies
+      </a>
+
+      <a href="tv-shows.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> TV Series
+      </a>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="categories">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Categories
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="anime.html" class="fh-dropdown__item"><i class="fas fa-dragon"></i> Anime</a>
+          <a href="gaming.html" class="fh-dropdown__item"><i class="fas fa-gamepad"></i> Gaming</a>
+          <a href="kpop.html" class="fh-dropdown__item"><i class="fas fa-music"></i> K-Pop</a>
+          <a href="comics.html" class="fh-dropdown__item"><i class="fas fa-book-open"></i> Comics</a>
+          <a href="manga.html" class="fh-dropdown__item"><i class="fas fa-scroll"></i> Manga</a>
+          <a href="cosplay.html" class="fh-dropdown__item"><i class="fas fa-user-ninja"></i> Cosplay</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="genre">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Genre
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown fh-dropdown--grid" role="menu" id="fhGenreDropdown">
+          <a href="fictional.html" class="fh-dropdown__item"><i class="fas fa-hat-wizard"></i> Fictional</a>
+          <a href="non-fictional.html" class="fh-dropdown__item"><i class="fas fa-book"></i> Non-Fictional</a>
+          <a href="crime.html" class="fh-dropdown__item"><i class="fas fa-magnifying-glass"></i> Crime</a>
+          <a href="thriller.html" class="fh-dropdown__item"><i class="fas fa-mask"></i> Thriller</a>
+          <a href="sci-fi.html" class="fh-dropdown__item"><i class="fas fa-satellite"></i> Sci-Fi</a>
+          <a href="action.html" class="fh-dropdown__item"><i class="fas fa-hand-fist"></i> Action</a>
+          <a href="adventure.html" class="fh-dropdown__item"><i class="fas fa-compass"></i> Adventure</a>
+          <a href="comedy.html" class="fh-dropdown__item"><i class="fas fa-face-laugh"></i> Comedy</a>
+          <a href="horror.html" class="fh-dropdown__item"><i class="fas fa-ghost"></i> Horror</a>
+          <a href="drama.html" class="fh-dropdown__item"><i class="fas fa-masks-theater"></i> Drama</a>
+          <a href="romance.html" class="fh-dropdown__item"><i class="fas fa-heart"></i> Romance</a>
+          <a href="mystery.html" class="fh-dropdown__item"><i class="fas fa-eye"></i> Mystery</a>
+        </div>
+      </div>
+
+      <a href="characters.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Characters
+      </a>
+
+  
+
+      
+    </nav>
+
+    <div class="fh-nav-actions">
+      <div class="fh-search-wrap" id="fhSearchWrap">
+        <div class="fh-search-inline">
+          <i class="fas fa-magnifying-glass fh-search-inline__icon" aria-hidden="true"></i>
+          <input type="text" id="fhSearchInput" class="fh-search-inline__input"
+                 placeholder="Search..." autocomplete="off"
+                 aria-label="Search movies, series, anime" />
+          <kbd class="fh-search-inline__kbd">⌘K</kbd>
+        </div>
+        <div class="fh-search-results hide-scrollbar" id="fhSearchResults" role="listbox"></div>
+      </div>
+
+      <button class="fh-theme-toggle" id="fhThemeToggle" type="button"
+              aria-label="Switch to light mode" aria-pressed="false">
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--sun" aria-hidden="true"><i class="fas fa-sun"></i></span>
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--moon" aria-hidden="true"><i class="fas fa-moon"></i></span>
+      </button>
+
+      <a href="login.html" class="fh-icon-btn fh-profile-btn" aria-label="Sign in">
+        <span class="fh-profile-btn__inner">A</span>
+      </a>
+    </div>
+
+    <button class="fh-menu-toggle" id="fhMenuToggle" aria-label="Toggle menu"
+            aria-expanded="false" aria-controls="fhMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="fh-mobile-menu" id="fhMobileMenu">
+
+    <a href="index.html" class="fh-mobile-menu__link">Home</a>
+    <a href="movies.html" class="fh-mobile-menu__link">Movies</a>
+    <a href="tv-shows.html" class="fh-mobile-menu__link">TV Series</a>
+    <a href="characters.html" class="fh-mobile-menu__link">Characters</a>
+
+    <div class="fh-mobile-menu__group">
+      <div class="fh-mobile-menu__label">Categories</div>
+      <a href="anime.html" class="fh-mobile-menu__sub">Anime</a>
+      <a href="gaming.html" class="fh-mobile-menu__sub">Gaming</a>
+      <a href="kpop.html" class="fh-mobile-menu__sub">K-Pop</a>
+      <a href="comics.html" class="fh-mobile-menu__sub">Comics</a>
+      <a href="manga.html" class="fh-mobile-menu__sub">Manga</a>
+      <a href="cosplay.html" class="fh-mobile-menu__sub">Cosplay</a>
+    </div>
+
+    <div class="fh-mobile-menu__group">
+      <div class="fh-mobile-menu__label">Genres</div>
+      <a href="action.html" class="fh-mobile-menu__sub">Action</a>
+      <a href="drama.html" class="fh-mobile-menu__sub">Drama</a>
+      <a href="thriller.html" class="fh-mobile-menu__sub">Thriller</a>
+      <a href="romance.html" class="fh-mobile-menu__sub">Romance</a>
+      <a href="mystery.html" class="fh-mobile-menu__sub">Mystery</a>
+      <a href="horror.html" class="fh-mobile-menu__sub">Horror</a>
+    </div>
+
+    <a href="login.html" class="fh-cta fh-cta--full">Sign In</a>
+  </div>
+</header>
+
+<main class="cm-page">
+
+  <nav class="fh-breadcrumb" style="max-width:1280px;margin:0 auto;padding:130px 24px 0;">
+    <a href="index.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <a href="#">Categories</a>
+    <i class="fas fa-chevron-right"></i>
+    <span>Comics</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cm-hero" id="cmHero">
+    <div class="cm-hero__aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="cm-hero__grid" aria-hidden="true"></div>
+    <div class="cm-hero__particles" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <aside class="cm-hero__side" aria-hidden="true">
+      <div class="cm-hero__stat">
+        <div class="cm-hero__stat-icon"><i class="fas fa-book-open"></i></div>
+        <div>
+          <div class="cm-hero__stat-label">Category</div>
+          <div class="cm-hero__stat-value">Comics</div>
+        </div>
+      </div>
+      <div class="cm-hero__stat">
+        <div class="cm-hero__stat-icon"><i class="fas fa-copy"></i></div>
+        <div>
+          <div class="cm-hero__stat-label">Titles</div>
+          <div class="cm-hero__stat-value" id="cmSideCount">8+</div>
+        </div>
+      </div>
+      <div class="cm-hero__stat">
+        <div class="cm-hero__stat-icon"><i class="fas fa-star"></i></div>
+        <div>
+          <div class="cm-hero__stat-label">Avg. Rating</div>
+          <div class="cm-hero__stat-value">9.5 / 10</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="cm-hero__scroll" aria-hidden="true">
+      <span class="cm-hero__scroll-line"></span> Stories told in panels
+    </div>
+
+    <div class="cm-hero__dots" id="cmHeroDots"></div>
+  </section>
+
+  <!-- TOP RATED MARQUEE -->
+  <section class="cm-section" id="cmTopRated" data-reveal>
+    <div class="cm-section__head">
+      <h2 class="cm-section__title">Top Rated Comics</h2>
+      <a href="#" class="cm-section__link">View All <i class="fas fa-chevron-right"></i></a>
+    </div>
+    <div class="cm-marquee hide-scrollbar" id="cmTopRatedTrack"></div>
+  </section>
+
+  <!-- COMICS GRID -->
+  <section class="cm-section" id="cmComicsSection" data-reveal>
+    <div class="cm-section__head">
+      <div>
+        <h2 class="cm-section__title">Explore Comics</h2>
+        <p class="cm-subtitle">From Watchmen to Saga — every panel a piece of history.</p>
+      </div>
+      <div class="cm-sort" id="cmComicsSort" role="tablist" aria-label="Sort comics">
+        <button class="cm-sort__btn is-active" data-sort="popular" type="button">Popular</button>
+        <button class="cm-sort__btn" data-sort="latest" type="button">Latest</button>
+        <button class="cm-sort__btn" data-sort="rating" type="button">Rating</button>
+        <button class="cm-sort__btn" data-sort="az" type="button">A–Z</button>
+      </div>
+    </div>
+    <div class="cm-grid" id="cmComicsGrid"></div>
+  </section>
+
+  <!-- MOVIES GRID -->
+  <section class="cm-section" id="cmMoviesSection" data-reveal>
+    <div class="cm-section__head">
+      <div>
+        <span class="cm-eyebrow">From Page to Screen</span>
+        <h2 class="cm-section__title">Comic Book Movies</h2>
+      </div>
+      <div class="cm-sort" id="cmMoviesSort" role="tablist" aria-label="Sort movies">
+        <button class="cm-sort__btn is-active" data-sort="popular" type="button">Popular</button>
+        <button class="cm-sort__btn" data-sort="latest" type="button">Latest</button>
+        <button class="cm-sort__btn" data-sort="rating" type="button">Rating</button>
+        <button class="cm-sort__btn" data-sort="az" type="button">A–Z</button>
+      </div>
+    </div>
+    <div class="cm-grid cm-grid--movies" id="cmMoviesGrid"></div>
+  </section>
+
+  <!-- PUBLISHERS -->
+  <section class="cm-section cm-publishers" id="cmPublishers" data-reveal>
+    <div class="cm-section__head">
+      <div>
+        <span class="cm-eyebrow">Where Legends Are Born</span>
+        <h2 class="cm-section__title">Top Publishers</h2>
+      </div>
+    </div>
+    <div class="cm-marquee hide-scrollbar" id="cmPublisherTrack"></div>
+  </section>
+
+</main>
+
+<footer class="fh-footer" id="fhFooter">
+  <div class="fh-footer__inner">
+    <div class="fh-footer__grid">
+      <div class="fh-footer__brand">
+        <h3>Fan Hub Plus</h3>
+        <p>Your all-in-one destination for Anime, Movies, TV Series, K-Pop, Gaming, and Comics.</p>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Series</a></li>
+          <li><a href="anime.html">Anime</a></li>
+          <li><a href="characters.html">Characters</a></li>
+
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="fan-submit.html">Fan Art</a></li>
+          <li><a href="cosplay.html">Cosplay</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fh-footer__bottom">
+      <p>© 2026 Fan Hub Plus. All rights reserved.</p>
+      <div class="fh-footer__social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="cm-drawer" id="cmDrawer" aria-hidden="true">
+  <div class="cm-drawer__overlay" data-drawer-close></div>
+  <div class="cm-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cmDrawerTitle">
+    <button class="cm-drawer__close" data-drawer-close aria-label="Close" type="button"><i class="fas fa-times"></i></button>
+    <div class="cm-drawer__body" id="cmDrawerBody"></div>
+  </div>
+</div>
+
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/comics.js" defer></script>
+
+</body>
+</html>

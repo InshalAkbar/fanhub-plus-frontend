@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fan Submissions · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-submissions.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item is-active" href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Fan Submissions</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Fan Submissions</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Fan Submissions</h2>
+    <p class="page-sub">Moderate content submitted by users.</p>
+  </div>
+</div>
+
+<!-- stat strip -->
+<section class="mini-stats">
+  <div class="mini-stat">
+    <span class="mini-stat-label">Pending</span>
+    <span class="mini-stat-value warn">5</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Approved</span>
+    <span class="mini-stat-value ok">142</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Rejected</span>
+    <span class="mini-stat-value danger">23</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">This week</span>
+    <span class="mini-stat-value">37</span>
+  </div>
+</section>
+
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="subSearch" placeholder="Search by title or user...">
+  </div>
+  <select class="input filter-select" id="statusFilter">
+    <option value="">All status</option>
+    <option value="pending">Pending</option>
+    <option value="approved">Approved</option>
+    <option value="rejected">Rejected</option>
+  </select>
+  <select class="input filter-select" id="categoryFilter">
+    <option value="">All categories</option>
+          <option value="anime">Anime</option>
+          <option value="comics">Comics</option>
+          <option value="cosplay">Cosplay</option>
+          <option value="gaming">Gaming</option>
+          <option value="kpop">K-Pop</option>
+          <option value="manga">Manga</option>
+          <option value="movies">Movies</option>
+          <option value="tv-shows">TV Shows</option>
+      </select>
+</div>
+
+<div class="panel">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Submission</th>
+          <th>Submitted by</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody id="subsTableBody">
+                  <tr data-title="my naruto final valley fan theory"
+              data-user="aria stark"
+              data-status="pending"
+              data-category="anime">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #E85D3D">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>My Naruto Final Valley Fan Theory</strong>
+                  <span class="sub-excerpt">I have been thinking about the final valley arc and how it parallels the original fight...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #E85D3D">
+                Anime
+              </span>
+            </td>
+            <td><span class="status-badge warn">Pending</span></td>
+            <td><span class="date-txt">Oct 17, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                  <form style="display:inline" data-static="1" data-action="admin.submissions.approve"><button class="icon-btn ok" type="submit" data-approve aria-label="Approve"><i class="fa-solid fa-check"></i></button></form>
+                  <form style="display:inline" data-static="1" data-action="admin.submissions.reject"><button class="icon-btn danger" type="submit" data-reject aria-label="Reject"><i class="fa-solid fa-xmark"></i></button></form>
+                                <a href="submission-review-1.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="best elden ring builds for beginners"
+              data-user="geralt rivia"
+              data-status="pending"
+              data-category="gaming">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #7B5FA8">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Best Elden Ring Builds for Beginners</strong>
+                  <span class="sub-excerpt">After 300 hours, here are the builds I recommend for new players...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">GR</span>
+                <span>Geralt Rivia</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #7B5FA8">
+                Gaming
+              </span>
+            </td>
+            <td><span class="status-badge warn">Pending</span></td>
+            <td><span class="date-txt">Oct 16, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                  <form style="display:inline" data-static="1" data-action="admin.submissions.approve"><button class="icon-btn ok" type="submit" data-approve aria-label="Approve"><i class="fa-solid fa-check"></i></button></form>
+                  <form style="display:inline" data-static="1" data-action="admin.submissions.reject"><button class="icon-btn danger" type="submit" data-reject aria-label="Reject"><i class="fa-solid fa-xmark"></i></button></form>
+                                <a href="submission-review-2.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="cosplay process: building geralt armor"
+              data-user="mikasa ackerman"
+              data-status="approved"
+              data-category="cosplay">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #653C9E">
+                  <i class="fa-solid fa-file"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Cosplay Process: Building Geralt Armor</strong>
+                  <span class="sub-excerpt">Sharing my full process for making Witcher armor from EVA foam...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">MA</span>
+                <span>Mikasa Ackerman</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #653C9E">
+                Cosplay
+              </span>
+            </td>
+            <td><span class="status-badge ok">Approved</span></td>
+            <td><span class="date-txt">Oct 14, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                <a href="submission-review-3.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="ranking every stranger things season"
+              data-user="test user"
+              data-status="approved"
+              data-category="tv-shows">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #22217A">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Ranking Every Stranger Things Season</strong>
+                  <span class="sub-excerpt">Here is my honest ranking of all the seasons so far...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #22217A">
+                TV Shows
+              </span>
+            </td>
+            <td><span class="status-badge ok">Approved</span></td>
+            <td><span class="date-txt">Oct 12, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                <a href="submission-review-4.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="why berserk still matters"
+              data-user="ken kaneki"
+              data-status="pending"
+              data-category="manga">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #5A4578">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Why Berserk Still Matters</strong>
+                  <span class="sub-excerpt">Berserk is more than a dark fantasy. It is a study of trauma and hope...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">KK</span>
+                <span>Ken Kaneki</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #5A4578">
+                Manga
+              </span>
+            </td>
+            <td><span class="status-badge warn">Pending</span></td>
+            <td><span class="date-txt">Oct 18, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                  <form style="display:inline" data-static="1" data-action="admin.submissions.approve"><button class="icon-btn ok" type="submit" data-approve aria-label="Approve"><i class="fa-solid fa-check"></i></button></form>
+                  <form style="display:inline" data-static="1" data-action="admin.submissions.reject"><button class="icon-btn danger" type="submit" data-reject aria-label="Reject"><i class="fa-solid fa-xmark"></i></button></form>
+                                <a href="submission-review-5.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="k-pop choreography breakdown"
+              data-user="lisa manoban"
+              data-status="rejected"
+              data-category="kpop">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #D96FA0">
+                  <i class="fa-solid fa-video"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>K-Pop Choreography Breakdown</strong>
+                  <span class="sub-excerpt">Breaking down the choreography of this month&#x27;s biggest comeback...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">LM</span>
+                <span>Lisa Manoban</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #D96FA0">
+                K-Pop
+              </span>
+            </td>
+            <td><span class="status-badge danger">Rejected</span></td>
+            <td><span class="date-txt">Oct 10, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                <a href="submission-review-6.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="fan art: jinx and vi"
+              data-user="jinx powder"
+              data-status="approved"
+              data-category="comics">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #E8A33D">
+                  <i class="fa-solid fa-image"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Fan Art: Jinx and Vi</strong>
+                  <span class="sub-excerpt">Here is my latest fan art featuring the sisters from Arcane...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">JP</span>
+                <span>Jinx Powder</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #E8A33D">
+                Comics
+              </span>
+            </td>
+            <td><span class="status-badge ok">Approved</span></td>
+            <td><span class="date-txt">Oct 08, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                <a href="submission-review-7.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="top 5 sci-fi movies you missed"
+              data-user="aria stark"
+              data-status="pending"
+              data-category="movies">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #8237AC">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Top 5 Sci-Fi Movies You Missed</strong>
+                  <span class="sub-excerpt">These underrated sci-fi movies deserve more attention...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #8237AC">
+                Movies
+              </span>
+            </td>
+            <td><span class="status-badge warn">Pending</span></td>
+            <td><span class="date-txt">Oct 19, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                  <form style="display:inline" data-static="1" data-action="admin.submissions.approve"><button class="icon-btn ok" type="submit" data-approve aria-label="Approve"><i class="fa-solid fa-check"></i></button></form>
+                  <form style="display:inline" data-static="1" data-action="admin.submissions.reject"><button class="icon-btn danger" type="submit" data-reject aria-label="Reject"><i class="fa-solid fa-xmark"></i></button></form>
+                                <a href="submission-review-8.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="anime soundtrack playlist"
+              data-user="test user"
+              data-status="pending"
+              data-category="anime">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #E85D3D">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Anime Soundtrack Playlist</strong>
+                  <span class="sub-excerpt">A curated playlist of anime soundtracks for studying...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #E85D3D">
+                Anime
+              </span>
+            </td>
+            <td><span class="status-badge warn">Pending</span></td>
+            <td><span class="date-txt">Oct 19, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                  <form style="display:inline" data-static="1" data-action="admin.submissions.approve"><button class="icon-btn ok" type="submit" data-approve aria-label="Approve"><i class="fa-solid fa-check"></i></button></form>
+                  <form style="display:inline" data-static="1" data-action="admin.submissions.reject"><button class="icon-btn danger" type="submit" data-reject aria-label="Reject"><i class="fa-solid fa-xmark"></i></button></form>
+                                <a href="submission-review-9.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+                  <tr data-title="comic collecting 101"
+              data-user="peter parker"
+              data-status="approved"
+              data-category="comics">
+            <td>
+              <div class="sub-cell">
+                <span class="sub-type" style="--c: #E8A33D">
+                  <i class="fa-solid fa-newspaper"></i>
+                </span>
+                <div class="sub-info">
+                  <strong>Comic Collecting 101</strong>
+                  <span class="sub-excerpt">How to start a comic collection without breaking the bank...</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">PP</span>
+                <span>Peter Parker</span>
+              </div>
+            </td>
+            <td>
+              <span class="cat-pill" style="--c: #E8A33D">
+                Comics
+              </span>
+            </td>
+            <td><span class="status-badge ok">Approved</span></td>
+            <td><span class="date-txt">Oct 05, 2026</span></td>
+            <td class="col-actions">
+              <div class="row-actions">
+                                <a href="submission-review-10.html" class="icon-btn" aria-label="Review">
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+              </tbody>
+    </table>
+  </div>
+
+  <div class="empty hide" id="noResults">
+    <i class="fa-regular fa-folder-open"></i>
+    <p>No submissions match your filters.</p>
+  </div>
+
+  <div class="pagination">
+    <span class="page-info">Showing <strong>1–8</strong> of <strong>170</strong></span>
+    <div class="page-controls">
+      <button class="page-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="page-btn is-active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-submissions.js"></script>
+</body></html>

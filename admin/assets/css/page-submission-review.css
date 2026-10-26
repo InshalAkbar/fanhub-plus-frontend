@@ -1,0 +1,167 @@
+.review-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  align-items: start;
+}
+
+.review-main {
+  min-width: 0;
+}
+
+.review-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-main .panel-head {
+  padding: 20px;
+}
+
+.review-main .panel-body {
+  padding: 24px;
+}
+
+
+.panel-sub {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.cat-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--c) 20%, transparent);
+  color: var(--c);
+}
+
+.sub-type-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: var(--elevated);
+  color: var(--txt-2);
+}
+
+.sub-type-tag i {
+  font-size: 10px;
+}
+
+.excerpt {
+  font-size: 14.5px;
+  color: var(--txt-2);
+  font-style: italic;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.6;
+}
+
+.content-body {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--txt);
+}
+
+/* author block */
+.author-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.avatar-lg {
+  width: 52px;
+  height: 52px;
+  font-size: 18px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.author-info strong {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--txt);
+}
+
+.author-info span {
+  font-size: 12.5px;
+  color: var(--txt-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* sub meta rows */
+.sub-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.meta-label {
+  color: var(--txt-3);
+}
+
+.meta-value {
+  color: var(--txt);
+  font-weight: 500;
+}
+
+/* moderation actions */
+.review-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.review-actions .btn {
+  flex: 1;
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .review-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .review-main .panel-body {
+    padding: 18px;
+  }
+
+  .review-actions {
+    flex-direction: column;
+  }
+
+  .content-body {
+    font-size: 14px;
+  }
+}

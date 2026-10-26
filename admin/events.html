@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Events · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-events.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item is-active" href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Events</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Events</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Events</h2>
+    <p class="page-sub">Conventions, meetups, and screenings — location-aware.</p>
+  </div>
+  <button class="btn btn-primary" id="addEventBtn" data-url="event-form.html">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add Event</span>
+  </button>
+</div>
+
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="eventSearch" placeholder="Search by title or venue...">
+  </div>
+  <select class="input filter-select" id="categoryFilter">
+    <option value="">All categories</option>
+          <option value="anime">Anime</option>
+          <option value="comics">Comics</option>
+          <option value="cosplay">Cosplay</option>
+          <option value="gaming">Gaming</option>
+          <option value="kpop">K-Pop</option>
+          <option value="manga">Manga</option>
+          <option value="movies">Movies</option>
+          <option value="tv-shows">TV Shows</option>
+      </select>
+  <select class="input filter-select" id="cityFilter">
+    <option value="">All cities</option>
+          <option value="karachi">Karachi</option>
+          <option value="lahore">Lahore</option>
+          <option value="islamabad">Islamabad</option>
+      </select>
+</div>
+
+<!-- events list -->
+<div class="events-list" id="eventsList">
+      <article class="event-card"
+             data-title="anime expo karachi"
+             data-venue="expo centre"
+             data-category="anime"
+             data-city="karachi">
+
+      <div class="event-date" style="--c: #E85D3D">
+        <span class="event-day">08</span>
+        <span class="event-month">Nov</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">Anime Expo Karachi</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Expo Centre, Karachi</span>
+          <span><i class="fa-regular fa-clock"></i> 10:00 AM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-1.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="gaming arena championship"
+             data-venue="fortress stadium"
+             data-category="gaming"
+             data-city="lahore">
+
+      <div class="event-date" style="--c: #7B5FA8">
+        <span class="event-day">22</span>
+        <span class="event-month">Nov</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">Gaming Arena Championship</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Fortress Stadium, Lahore</span>
+          <span><i class="fa-regular fa-clock"></i> 2:00 PM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-2.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="comic con islamabad"
+             data-venue="jinnah convention centre"
+             data-category="comics"
+             data-city="islamabad">
+
+      <div class="event-date" style="--c: #E8A33D">
+        <span class="event-day">06</span>
+        <span class="event-month">Dec</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">Comic Con Islamabad</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Jinnah Convention Centre, Islamabad</span>
+          <span><i class="fa-regular fa-clock"></i> 11:00 AM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-3.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="k-pop dance night"
+             data-venue="arts council"
+             data-category="kpop"
+             data-city="karachi">
+
+      <div class="event-date" style="--c: #D96FA0">
+        <span class="event-day">18</span>
+        <span class="event-month">Dec</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">K-Pop Dance Night</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Arts Council, Karachi</span>
+          <span><i class="fa-regular fa-clock"></i> 7:00 PM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-4.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="cosplay parade &amp; photoshoot"
+             data-venue="alhamra arts centre"
+             data-category="cosplay"
+             data-city="lahore">
+
+      <div class="event-date" style="--c: #653C9E">
+        <span class="event-day">02</span>
+        <span class="event-month">Jan</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">Cosplay Parade &amp; Photoshoot</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Alhamra Arts Centre, Lahore</span>
+          <span><i class="fa-regular fa-clock"></i> 4:00 PM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-5.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="movie marathon: sci-fi classics"
+             data-venue="centaurus cinema"
+             data-category="movies"
+             data-city="islamabad">
+
+      <div class="event-date" style="--c: #8237AC">
+        <span class="event-day">17</span>
+        <span class="event-month">Jan</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">Movie Marathon: Sci-Fi Classics</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Centaurus Cinema, Islamabad</span>
+          <span><i class="fa-regular fa-clock"></i> 6:30 PM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-6.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="manga drawing workshop"
+             data-venue="indus valley campus"
+             data-category="manga"
+             data-city="karachi">
+
+      <div class="event-date" style="--c: #5A4578">
+        <span class="event-day">01</span>
+        <span class="event-month">Feb</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">Manga Drawing Workshop</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Indus Valley Campus, Karachi</span>
+          <span><i class="fa-regular fa-clock"></i> 1:00 PM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+          <span class="status-badge ok">Published</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-7.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+      <article class="event-card"
+             data-title="tv series fan meetup"
+             data-venue="packages mall cafe"
+             data-category="tv-shows"
+             data-city="lahore">
+
+      <div class="event-date" style="--c: #22217A">
+        <span class="event-day">16</span>
+        <span class="event-month">Feb</span>
+      </div>
+
+      <div class="event-main">
+        <h3 class="event-title">TV Series Fan Meetup</h3>
+        <div class="event-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Packages Mall Cafe, Lahore</span>
+          <span><i class="fa-regular fa-clock"></i> 5:00 PM</span>
+        </div>
+        <div class="event-tags">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+          <span class="status-badge warn">Draft</span>
+                      <span class="ticket-tag">
+              <i class="fa-solid fa-ticket"></i> Tickets
+            </span>
+                  </div>
+      </div>
+
+      <div class="event-actions">
+        <a href="event-form-8.html" class="icon-btn" aria-label="Edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+        <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.events.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+      </div>
+
+    </article>
+  </div>
+
+<div class="empty hide" id="noResults">
+  <i class="fa-regular fa-calendar-xmark"></i>
+  <p>No events match your filters.</p>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-events.js"></script>
+</body></html>

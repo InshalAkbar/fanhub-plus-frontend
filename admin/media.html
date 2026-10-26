@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Media Manager · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-media.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item is-active" href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item " href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Media Manager</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Media Center</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Media Center</h2>
+    <p class="page-sub">Videos, audio clips, and image galleries.</p>
+  </div>
+  <a href="media-form.html" class="btn btn-primary">
+    <i class="fa-solid fa-plus"></i>
+    <span>Add Media</span>
+  </a>
+</div>
+
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="mediaSearch" placeholder="Search by title...">
+  </div>
+  <select class="input filter-select" id="categoryFilter">
+    <option value="">All categories</option>
+          <option value="anime">Anime</option>
+          <option value="comics">Comics</option>
+          <option value="cosplay">Cosplay</option>
+          <option value="gaming">Gaming</option>
+          <option value="kpop">K-Pop</option>
+          <option value="manga">Manga</option>
+          <option value="movies">Movies</option>
+          <option value="tv-shows">TV Shows</option>
+      </select>
+  <select class="input filter-select" id="typeFilter">
+    <option value="">All types</option>
+          <option value="video">Video</option>
+          <option value="trailer">Trailer</option>
+          <option value="audio">Audio</option>
+          <option value="image">Image</option>
+      </select>
+</div>
+
+<!-- media grid -->
+<div class="media-grid" id="mediaGrid">
+      <article class="media-card"
+             data-title="naruto: the final valley"
+             data-category="anime"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E85D3D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Naruto: The Final Valley</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-1.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="one piece: grand line chronicles"
+             data-category="anime"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E85D3D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">One Piece: Grand Line Chronicles</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-2.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="demon slayer: hashira stories"
+             data-category="anime"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E85D3D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Demon Slayer: Hashira Stories</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-3.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="attack on titan: beyond the walls"
+             data-category="anime"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E85D3D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Attack on Titan: Beyond the Walls</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-4.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="jujutsu kaisen: cursed energy guide"
+             data-category="anime"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E85D3D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Jujutsu Kaisen: Cursed Energy Guide</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-5.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="elden ring: lands between"
+             data-category="gaming"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #7B5FA8">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Elden Ring: Lands Between</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-6.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="cyberpunk 2077: night city files"
+             data-category="gaming"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #7B5FA8">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Cyberpunk 2077: Night City Files</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-7.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="minecraft: survival mastery"
+             data-category="gaming"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #7B5FA8">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Minecraft: Survival Mastery</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-8.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="the last of us: story archive"
+             data-category="gaming"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #7B5FA8">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">The Last of Us: Story Archive</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-9.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="valorant: agents &amp; maps"
+             data-category="gaming"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #7B5FA8">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Valorant: Agents &amp; Maps</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-10.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="dune: part two"
+             data-category="movies"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #8237AC">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Dune: Part Two</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-11.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="oppenheimer"
+             data-category="movies"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #8237AC">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Oppenheimer</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-12.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="spider-man: across the spider-verse"
+             data-category="movies"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #8237AC">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Spider-Man: Across the Spider-Verse</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-13.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="the batman"
+             data-category="movies"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #8237AC">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">The Batman</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-14.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="everything everywhere all at once"
+             data-category="movies"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #8237AC">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Everything Everywhere All at Once</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-15.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="breaking bad"
+             data-category="tv-shows"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #22217A">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Breaking Bad</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-16.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="game of thrones"
+             data-category="tv-shows"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #22217A">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Game of Thrones</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-17.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="stranger things"
+             data-category="tv-shows"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #22217A">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Stranger Things</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-18.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="the last of us"
+             data-category="tv-shows"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #22217A">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">The Last of Us</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-19.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="arcane"
+             data-category="tv-shows"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #22217A">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Arcane</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #22217A">
+            TV Shows
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-20.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="bts: music archive"
+             data-category="kpop"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #D96FA0">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">BTS: Music Archive</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-21.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="blackpink: the discography"
+             data-category="kpop"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #D96FA0">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">BLACKPINK: The Discography</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-22.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="twice: once universe"
+             data-category="kpop"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #D96FA0">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">TWICE: Once Universe</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-23.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="stray kids: studio files"
+             data-category="kpop"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #D96FA0">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Stray Kids: Studio Files</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-24.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="seventeen: performance archive"
+             data-category="kpop"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #D96FA0">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">SEVENTEEN: Performance Archive</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #D96FA0">
+            K-Pop
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-25.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="watchmen"
+             data-category="comics"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E8A33D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Watchmen</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-26.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="the sandman"
+             data-category="comics"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E8A33D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">The Sandman</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-27.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="batman: year one"
+             data-category="comics"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E8A33D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Batman: Year One</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-28.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="spider-man: blue"
+             data-category="comics"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E8A33D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Spider-Man: Blue</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-29.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="ms. marvel"
+             data-category="comics"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E8A33D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Ms. Marvel</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-30.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="one piece"
+             data-category="manga"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #5A4578">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">One Piece</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-31.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="berserk"
+             data-category="manga"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #5A4578">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Berserk</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-32.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="vagabond"
+             data-category="manga"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #5A4578">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Vagabond</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-33.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="my hero academia"
+             data-category="manga"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #5A4578">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">My Hero Academia</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-34.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="chainsaw man"
+             data-category="manga"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #5A4578">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Chainsaw Man</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #5A4578">
+            Manga
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-35.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="zero two cosplay showcase"
+             data-category="cosplay"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #653C9E">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Zero Two Cosplay Showcase</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 19.3K</span>
+          <div class="media-actions">
+            <a href="media-form-36.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="jinx cosplay workshop"
+             data-category="cosplay"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #653C9E">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Jinx Cosplay Workshop</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 23.6K</span>
+          <div class="media-actions">
+            <a href="media-form-37.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="geralt cosplay armor guide"
+             data-category="cosplay"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #653C9E">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Geralt Cosplay Armor Guide</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 27.9K</span>
+          <div class="media-actions">
+            <a href="media-form-38.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="sailor moon costume studio"
+             data-category="cosplay"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #653C9E">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Sailor Moon Costume Studio</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 32.2K</span>
+          <div class="media-actions">
+            <a href="media-form-39.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="spider-man suit design lab"
+             data-category="cosplay"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #653C9E">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Spider-Man Suit Design Lab</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 36.5K</span>
+          <div class="media-actions">
+            <a href="media-form-40.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="anime openings mix"
+             data-category="anime"
+             data-type="audio">
+
+      <div class="media-thumb" style="--c: #E85D3D">
+        <i class="fa-solid fa-music"></i>
+        <span class="media-type">Audio</span>
+                  <span class="media-duration">
+            <i class="fa-solid fa-clock"></i> 24:10
+          </span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Anime Openings Mix</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E85D3D">
+            Anime
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 9K</span>
+          <div class="media-actions">
+            <a href="media-form-41.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="gaming soundtrack hour"
+             data-category="gaming"
+             data-type="audio">
+
+      <div class="media-thumb" style="--c: #7B5FA8">
+        <i class="fa-solid fa-music"></i>
+        <span class="media-type">Audio</span>
+                  <span class="media-duration">
+            <i class="fa-solid fa-clock"></i> 58:32
+          </span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Gaming Soundtrack Hour</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #7B5FA8">
+            Gaming
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 11.8K</span>
+          <div class="media-actions">
+            <a href="media-form-42.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="cosplay convention gallery"
+             data-category="cosplay"
+             data-type="image">
+
+      <div class="media-thumb" style="--c: #653C9E">
+        <i class="fa-solid fa-image"></i>
+        <span class="media-type">Image</span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Cosplay Convention Gallery</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #653C9E">
+            Cosplay
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 14.5K</span>
+          <div class="media-actions">
+            <a href="media-form-43.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="dune: part two official trailer"
+             data-category="movies"
+             data-type="trailer">
+
+      <div class="media-thumb" style="--c: #8237AC">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Trailer</span>
+                  <span class="media-duration">
+            <i class="fa-solid fa-clock"></i> 2:46
+          </span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Dune: Part Two Official Trailer</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #8237AC">
+            Movies
+          </span>
+          <span class="status-badge ok">Published</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 17.2K</span>
+          <div class="media-actions">
+            <a href="media-form-44.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+      <article class="media-card"
+             data-title="spider-verse art breakdown"
+             data-category="comics"
+             data-type="video">
+
+      <div class="media-thumb" style="--c: #E8A33D">
+        <i class="fa-solid fa-video"></i>
+        <span class="media-type">Video</span>
+                  <span class="media-duration">
+            <i class="fa-solid fa-clock"></i> 12:08
+          </span>
+              </div>
+
+      <div class="media-body">
+        <h3 class="media-title">Spider-Verse Art Breakdown</h3>
+        <div class="media-meta">
+          <span class="cat-pill" style="--c: #E8A33D">
+            Comics
+          </span>
+          <span class="status-badge warn">Draft</span>
+        </div>
+        <div class="media-foot">
+          <span class="mono views-txt"><i class="fa-regular fa-eye"></i> 20K</span>
+          <div class="media-actions">
+            <a href="media-form-45.html" class="icon-btn" aria-label="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <form style="display:inline" onsubmit="return confirm('Delete this item?')" data-static="1" data-action="admin.media.delete"> <input type="hidden" name="_method" value="DELETE"><button class="icon-btn danger" type="submit" aria-label="Delete"><i class="fa-regular fa-trash-can"></i></button></form>
+          </div>
+        </div>
+      </div>
+
+    </article>
+  </div>
+
+<div class="empty hide" id="noResults">
+  <i class="fa-regular fa-folder-open"></i>
+  <p>No media matches your filters.</p>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-media.js"></script>
+</body></html>

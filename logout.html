@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signing Out | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('fanhub-theme');
+    if (saved === 'light') document.documentElement.classList.add('light-mode');
+    else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/shared.css" />
+<link rel="stylesheet" href="assets/css/logout.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+<body class="fh-app fh-logout-page">
+
+<div class="fh-logout">
+  <div class="fh-logout__bg" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <a href="index.html" class="fh-logout__brand">
+    <span class="fh-brand__mark-wrap">
+      <span class="fh-brand__ring" aria-hidden="true"></span>
+      <span class="fh-brand__mark" aria-hidden="true"></span>
+    </span>
+    <span class="fh-brand__name">Fan Hub Plus</span>
+  </a>
+
+  <div class="fh-logout__card">
+    <div class="fh-logout__icon-wrap">
+      <div class="fh-logout__icon">
+        <i class="fas fa-right-from-bracket"></i>
+      </div>
+      <div class="fh-logout__ring" aria-hidden="true"></div>
+    </div>
+
+    <h1 class="fh-logout__title">Signing you out…</h1>
+    <p class="fh-logout__subtitle">
+      Thanks for hanging out at Fan Hub Plus. See you next time!
+    </p>
+
+    <div class="fh-logout__progress">
+      <div class="fh-logout__bar" id="fhLogoutBar"></div>
+    </div>
+
+    <div class="fh-logout__timer">
+      Redirecting to sign in in <strong id="fhLogoutCountdown">5</strong>s…
+    </div>
+
+    <div class="fh-logout__actions">
+      <a href="login.html" class="fh-logout__btn fh-logout__btn--primary">
+        <i class="fas fa-right-to-bracket"></i> Sign In Again
+      </a>
+      <a href="login.html" class="fh-logout__btn fh-logout__btn--ghost">
+        <i class="fas fa-right-to-bracket"></i> Sign In Now
+      </a>
+    </div>
+
+    <div class="fh-logout__tip">
+      <i class="fas fa-lightbulb"></i>
+      <span>Tip: Your bookmarks and submissions are saved. Sign back in to continue where you left off.</span>
+    </div>
+  </div>
+
+  <div class="fh-logout__foot">
+    <span>© 2026 Fan Hub Plus</span>
+    <span class="fh-logout__dot">·</span>
+    <span>Made for fans, by fans</span>
+  </div>
+</div>
+
+<script src="assets/js/logout.js"></script>
+
+</body>
+</html>

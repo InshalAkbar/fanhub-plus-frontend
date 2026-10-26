@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Events | Fan Hub Plus</title>
+
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('fanhub-theme');
+    if (saved === 'light') document.documentElement.classList.add('light-mode');
+    else if (saved === 'dark') document.documentElement.classList.remove('light-mode');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      document.documentElement.classList.add('light-mode');
+  } catch (e) {}
+})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://unpkg.com" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/shared.css" />
+<link rel="stylesheet" href="assets/css/events.css" />
+  <script src="assets/js/site-api.js"></script>
+</head>
+
+<link rel="stylesheet" href="assets/css/bot-widget.css" />
+<script src="assets/js/bot-widget.js" defer></script>
+<body class="fh-app fh-events-page">
+
+<div class="fh-progress" id="fhProgressBar" aria-hidden="true"></div>
+
+<header class="fh-navbar" id="fhNavbar">
+  <div class="fh-navbar__inner" id="fhNavbarInner">
+    <span class="fh-navbar__glow" aria-hidden="true"></span>
+    <span class="fh-navbar__edge" aria-hidden="true"></span>
+    <span class="fh-navbar__particles" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </span>
+
+      <nav class="fh-nav" id="fhNav" aria-label="Primary">
+      <span class="fh-nav__pill" id="fhNavPill" aria-hidden="true"></span>
+
+      <a href="dashboard.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Home
+      </a>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="movies">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Movies
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="movies.html" class="fh-dropdown__item"><i class="fas fa-film"></i> All Movies</a>
+          <a href="movies.html?sort=latest" class="fh-dropdown__item"><i class="fas fa-clock-rotate-left"></i> Latest</a>
+          <a href="movies.html?sort=popular" class="fh-dropdown__item"><i class="fas fa-fire"></i> Most Watched</a>
+          <a href="movies.html?sort=upcoming" class="fh-dropdown__item"><i class="fas fa-calendar-plus"></i> Upcoming</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="tv">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> TV Series
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="tv-shows.html" class="fh-dropdown__item"><i class="fas fa-tv"></i> All Series</a>
+          <a href="tv-shows.html?sort=latest" class="fh-dropdown__item"><i class="fas fa-clock-rotate-left"></i> Latest</a>
+          <a href="tv-shows.html?sort=popular" class="fh-dropdown__item"><i class="fas fa-fire"></i> Most Watched</a>
+          <a href="tv-shows.html?sort=top" class="fh-dropdown__item"><i class="fas fa-star"></i> Top Rated</a>
+        </div>
+      </div>
+
+      <div class="fh-nav__item fh-nav__item--dropdown" data-dropdown="categories">
+        <button class="fh-nav__link fh-nav__link--trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-nav__dot"></span> Categories
+          <i class="fas fa-chevron-down fh-nav__caret" aria-hidden="true"></i>
+        </button>
+        <div class="fh-dropdown" role="menu">
+          <a href="anime.html" class="fh-dropdown__item"><i class="fas fa-dragon"></i> Anime</a>
+          <a href="gaming.html" class="fh-dropdown__item"><i class="fas fa-gamepad"></i> Gaming</a>
+          <a href="kpop.html" class="fh-dropdown__item"><i class="fas fa-music"></i> K-Pop</a>
+          <a href="comics.html" class="fh-dropdown__item"><i class="fas fa-book-open"></i> Comics</a>
+          <a href="manga.html" class="fh-dropdown__item"><i class="fas fa-scroll"></i> Manga</a>
+          <a href="cosplay.html" class="fh-dropdown__item"><i class="fas fa-user-ninja"></i> Cosplay</a>
+          <a href="merchandise.html" class="fh-dropdown__item"><i class="fas fa-bag-shopping"></i> Merchandise</a>
+        </div>
+      </div>
+
+      <a href="events.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Events
+      </a>
+
+      <a href="articles.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Articles
+      </a>
+
+      <a href="characters.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Characters
+      </a>
+
+      <a href="feedback.html" class="fh-nav__link">
+        <span class="fh-nav__dot"></span> Feedback
+      </a>
+    </nav>
+
+    <div class="fh-nav-actions">
+      <div class="fh-search-wrap" id="fhSearchWrap">
+        <div class="fh-search-inline">
+          <i class="fas fa-magnifying-glass fh-search-inline__icon" aria-hidden="true"></i>
+          <input type="text" id="fhSearchInput" class="fh-search-inline__input"
+                 placeholder="Search..." autocomplete="off"
+                 aria-label="Search" />
+          <kbd class="fh-search-inline__kbd">⌘K</kbd>
+        </div>
+        <div class="fh-search-results hide-scrollbar" id="fhSearchResults" role="listbox"></div>
+      </div>
+
+      <button class="fh-theme-toggle" id="fhThemeToggle" type="button"
+              aria-label="Switch to light mode" aria-pressed="false">
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--sun" aria-hidden="true"><i class="fas fa-sun"></i></span>
+        <span class="fh-theme-toggle__icon fh-theme-toggle__icon--moon" aria-hidden="true"><i class="fas fa-moon"></i></span>
+      </button>
+
+      <div class="fh-nav__item fh-nav__item--dropdown fh-user-menu" data-dropdown="user">
+        <button class="fh-user-menu__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="fh-profile-btn__inner" id="fhUserAvatar">Y</span>
+        </button>
+        <div class="fh-dropdown fh-dropdown--user" role="menu">
+          <a href="dashboard.html" class="fh-dropdown__item is-active"><i class="fas fa-gauge"></i> Dashboard</a>
+          <a href="profile.html" class="fh-dropdown__item"><i class="fas fa-user"></i> Profile</a>
+          <a href="my-bookmarks.html" class="fh-dropdown__item"><i class="fas fa-bookmark"></i> Bookmarks</a>
+          <a href="my-submissions.html" class="fh-dropdown__item"><i class="fas fa-upload"></i> My Submissions</a>
+          <a href="feedback.html" class="fh-dropdown__item"><i class="fas fa-comment-dots"></i> My Feedback</a>
+          <a href="notifications.html" class="fh-dropdown__item"><i class="fas fa-bell"></i> Notifications</a>
+          <div class="fh-dropdown__divider"></div>
+          <a href="logout.html" class="fh-dropdown__item fh-dropdown__item--danger"><i class="fas fa-right-from-bracket"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="fh-menu-toggle" id="fhMenuToggle" aria-label="Toggle menu"
+            aria-expanded="false" aria-controls="fhMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="fh-mobile-menu" id="fhMobileMenu">
+    <a href="dashboard.html" class="fh-mobile-menu__link">Home</a>
+    <a href="dashboard.html" class="fh-mobile-menu__link is-active">Dashboard</a>
+    <a href="articles.html" class="fh-mobile-menu__link">Articles</a>
+    <a href="feedback.html" class="fh-mobile-menu__link">Feedback</a>
+    <a href="movies.html" class="fh-mobile-menu__link">Movies</a>
+    <a href="tv-shows.html" class="fh-mobile-menu__link">TV Series</a>
+    <a href="events.html" class="fh-mobile-menu__link">Events</a>
+    <a href="characters.html" class="fh-mobile-menu__link">Characters</a>
+    <a href="my-bookmarks.html" class="fh-mobile-menu__link">Bookmarks</a>
+    <a href="profile.html" class="fh-mobile-menu__link">Profile</a>
+    <a href="logout.html" class="fh-cta fh-cta--full">Logout</a>
+    <a href="merchandise.html" class="fh-cta fh-cta--full">Merchandise</a>
+  </div>
+</header>
+
+<section class="fh-ev-hero" id="fhEvHero">
+  <div class="fh-ev-hero__aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="fh-ev-hero__grid" aria-hidden="true"></div>
+
+  <div class="fh-ev-hero__inner">
+    <div class="fh-ev-hero__badge">
+      <i class="fas fa-star"></i> Featured Event
+    </div>
+
+    <div class="fh-ev-hero__content">
+      <div class="fh-ev-hero__left">
+        <span class="fh-ev-hero__cat">
+          <i class="fas fa-mask"></i> Anime Convention
+        </span>
+        <h1 class="fh-ev-hero__title">Karachi Comic-Con 2026</h1>
+        <p class="fh-ev-hero__desc">
+          Pakistan's biggest fandom gathering — 3 days of anime, cosplay, gaming, panels, and meet-and-greets with special guests from around the world.
+        </p>
+
+        <div class="fh-ev-hero__meta">
+          <span><i class="fas fa-calendar"></i> Dec 15 – 17, 2026</span>
+          <span><i class="fas fa-map-marker-alt"></i> Expo Centre, Karachi</span>
+          <span><i class="fas fa-users"></i> 45K+ attendees</span>
+        </div>
+
+        <div class="fh-ev-hero__actions">
+          <a href="event-single.html?id=1" class="fh-ev-hero__btn fh-ev-hero__btn--primary">
+            <i class="fas fa-ticket"></i> Get Tickets
+          </a>
+          <a href="event-single.html?id=1" class="fh-ev-hero__btn fh-ev-hero__btn--ghost">
+            <i class="fas fa-circle-info"></i> Details
+          </a>
+        </div>
+      </div>
+
+      <div class="fh-ev-hero__right">
+        <div class="fh-ev-hero__countdown" id="fhEvCountdown">
+          <div class="fh-ev-hero__cd-title">Starts In</div>
+          <div class="fh-ev-hero__cd-grid">
+            <div class="fh-ev-hero__cd-unit">
+              <div class="fh-ev-hero__cd-val" data-cd="days">00</div>
+              <div class="fh-ev-hero__cd-label">Days</div>
+            </div>
+            <div class="fh-ev-hero__cd-unit">
+              <div class="fh-ev-hero__cd-val" data-cd="hours">00</div>
+              <div class="fh-ev-hero__cd-label">Hours</div>
+            </div>
+            <div class="fh-ev-hero__cd-unit">
+              <div class="fh-ev-hero__cd-val" data-cd="minutes">00</div>
+              <div class="fh-ev-hero__cd-label">Minutes</div>
+            </div>
+            <div class="fh-ev-hero__cd-unit">
+              <div class="fh-ev-hero__cd-val" data-cd="seconds">00</div>
+              <div class="fh-ev-hero__cd-label">Seconds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="fh-ev" id="fhEv">
+
+  <section class="fh-ev__filters" id="fhEvFilters">
+    <div class="fh-ev__filter-head">
+      <h2 class="fh-ev__filter-title">
+        <i class="fas fa-filter"></i> Find Events Near You
+      </h2>
+      <div class="fh-ev__filter-actions">
+        <button class="fh-ev__locate" id="fhEvLocate" type="button">
+          <i class="fas fa-location-crosshairs"></i> Use My Location
+        </button>
+        <button class="fh-ev__reset" id="fhEvReset" type="button">
+          <i class="fas fa-rotate-left"></i> Reset
+        </button>
+      </div>
+    </div>
+
+    <div class="fh-ev__filter-row">
+      <div class="fh-ev__search">
+        <i class="fas fa-magnifying-glass"></i>
+        <input type="text" id="fhEvSearch" placeholder="Search events, venues, or guests..." autocomplete="off" />
+      </div>
+
+      <div class="fh-ev__select-wrap">
+        <i class="fas fa-city"></i>
+        <select id="fhEvCity">
+          <option value="all">All Cities</option>
+          <option value="Karachi">Karachi</option>
+          <option value="Lahore">Lahore</option>
+          <option value="Islamabad">Islamabad</option>
+          <option value="Rawalpindi">Rawalpindi</option>
+          <option value="Faisalabad">Faisalabad</option>
+          <option value="Peshawar">Peshawar</option>
+        </select>
+      </div>
+
+      <div class="fh-ev__select-wrap">
+        <i class="fas fa-tag"></i>
+        <select id="fhEvCategory">
+          <option value="all">All Categories</option>
+          <option value="anime">Anime</option>
+          <option value="gaming">Gaming</option>
+          <option value="kpop">K-Pop</option>
+          <option value="cosplay">Cosplay</option>
+          <option value="comics">Comics</option>
+          <option value="movies">Movies</option>
+        </select>
+      </div>
+
+      <div class="fh-ev__select-wrap">
+        <i class="fas fa-calendar"></i>
+        <select id="fhEvDate">
+          <option value="all">Any Date</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+          <option value="3months">Next 3 Months</option>
+          <option value="year">This Year</option>
+        </select>
+      </div>
+
+      <div class="fh-ev__view-toggle" role="tablist">
+        <button class="fh-ev__view-btn is-active" data-view="grid" type="button" title="Grid View">
+          <i class="fas fa-grip"></i>
+        </button>
+        <button class="fh-ev__view-btn" data-view="calendar" type="button" title="Calendar View">
+          <i class="fas fa-calendar-days"></i>
+        </button>
+        <button class="fh-ev__view-btn" data-view="map" type="button" title="Map View">
+          <i class="fas fa-map"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="fh-ev__active-chips" id="fhEvActiveChips"></div>
+  </section>
+
+  <section class="fh-ev__results-head">
+    <div class="fh-ev__results-info">
+      <span id="fhEvResultCount">0 events found</span>
+    </div>
+    <div class="fh-ev__results-sort">
+      <label for="fhEvSort">Sort by:</label>
+      <select id="fhEvSort">
+        <option value="date">Date (Soonest)</option>
+        <option value="popular">Most Popular</option>
+        <option value="price">Price (Low–High)</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="fh-ev__grid-view" id="fhEvGrid"></section>
+
+  <section class="fh-ev__calendar-view" id="fhEvCalendar" style="display:none;">
+    <div class="fh-ev-cal__head">
+      <button class="fh-ev-cal__nav" id="fhEvCalPrev" type="button" aria-label="Previous month">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <h3 class="fh-ev-cal__title" id="fhEvCalTitle">Month Year</h3>
+      <button class="fh-ev-cal__nav" id="fhEvCalNext" type="button" aria-label="Next month">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="fh-ev-cal__weekdays">
+      <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+    </div>
+
+    <div class="fh-ev-cal__grid" id="fhEvCalGrid"></div>
+
+    <div class="fh-ev-cal__legend">
+      <span><span class="fh-ev-cal__dot fh-ev-cal__dot--anime"></span> Anime</span>
+      <span><span class="fh-ev-cal__dot fh-ev-cal__dot--gaming"></span> Gaming</span>
+      <span><span class="fh-ev-cal__dot fh-ev-cal__dot--kpop"></span> K-Pop</span>
+      <span><span class="fh-ev-cal__dot fh-ev-cal__dot--cosplay"></span> Cosplay</span>
+      <span><span class="fh-ev-cal__dot fh-ev-cal__dot--comics"></span> Comics</span>
+      <span><span class="fh-ev-cal__dot fh-ev-cal__dot--movies"></span> Movies</span>
+    </div>
+  </section>
+
+  <section class="fh-ev__map-view" id="fhEvMap" style="display:none;">
+    <div class="fh-ev-map__head">
+      <h3 class="fh-ev-map__title"><i class="fas fa-map-location-dot"></i> Event Locations</h3>
+      <p class="fh-ev-map__sub">Click on any pin to see event details</p>
+    </div>
+    <div class="fh-ev-map__wrap">
+      <div id="fhEvLeaflet" class="fh-ev-map__canvas" aria-label="Event locations map"></div>
+      <aside class="fh-ev-map__side" id="fhEvMapSide">
+        <div class="fh-ev-map__side-empty">
+          <i class="fas fa-hand-pointer"></i>
+          <p>Click a pin to view event</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="fh-ev__empty" id="fhEvEmpty" style="display:none;">
+    <i class="fas fa-calendar-xmark"></i>
+    <h3>No events found</h3>
+    <p>Try adjusting your filters or check back later for new events.</p>
+    <button class="fh-dash__btn fh-dash__btn--ghost" id="fhEvEmptyReset" type="button">
+      <i class="fas fa-rotate-left"></i> Reset Filters
+    </button>
+  </section>
+
+</main>
+
+<footer class="fh-footer" id="fhFooter">
+  <div class="fh-footer__inner">
+    <div class="fh-footer__grid">
+      <div class="fh-footer__brand">
+        <h3>Fan Hub Plus</h3>
+        <p>Your all-in-one destination for Anime, Movies, TV Series, K-Pop, Gaming, and Comics.</p>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="tv-shows.html">TV Series</a></li>
+          <li><a href="anime.html">Anime</a></li>
+          <li><a href="characters.html">Characters</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="fan-submit.html">Fan Art</a></li>
+          <li><a href="cosplay.html">Cosplay</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="articles.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="fh-footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fh-footer__bottom">
+      <p>© 2026 Fan Hub Plus. All rights reserved.</p>
+      <div class="fh-footer__social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/events.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* page-error.css was referenced by the original error views but not included in the zip. */
+body{min-height:100vh;background:var(--bg,#0E0E12);color:var(--txt,#ECECEF);font-family:var(--font-2,system-ui,sans-serif)}
+.error-shell{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px}
+.error-body{max-width:460px}
+.error-icon{font-size:42px;color:var(--accent,#8237AC);margin-bottom:12px}
+.error-code{font-family:var(--mono,monospace);font-size:84px;font-weight:700;line-height:1;color:var(--accent,#8237AC)}
+.error-title{font-size:24px;margin:10px 0 6px}
+.error-text{color:var(--txt-2,#A0A0AB);margin-bottom:22px}
+.error-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.error-footer{margin-top:28px;color:var(--txt-3,#6A6A76);font-size:12px}

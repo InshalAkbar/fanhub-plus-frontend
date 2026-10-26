@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Feedback · Fan Hub Plus</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/css/admin-core.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-navbar.css"><link rel="stylesheet" href="assets/css/admin-sidebar.css"><link rel="stylesheet" href="assets/css/admin-responsive.css">
+<link rel="stylesheet" href="assets/css/page-feedback.css">
+    <script src="assets/js/admin-static.js"></script>
+</head><body class="admin-body">
+<div class="shell">
+<aside class="sidebar">
+<div class="sidebar-brand"><a class="brand-mark" href="dashboard.html"><span class="brand-glyph"><i class="fa-solid fa-star"></i></span><span class="brand-name">Fan Hub <em>Plus</em></span></a></div>
+<nav class="sidebar-nav">
+<div class="nav-group"><div class="nav-group-label">Overview</div><div class="nav-list">
+<a class="nav-item " href="dashboard.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a>
+<a class="nav-item " href="analytics.html"><i class="fa-solid fa-chart-pie"></i><span>Analytics</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">Manage</div><div class="nav-list">
+<a class="nav-item " href="users.html"><i class="fa-solid fa-users"></i><span>Users</span></a>
+<a class="nav-item " href="categories.html"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
+<a class="nav-item " href="content.html"><i class="fa-solid fa-rectangle-list"></i><span>Content</span></a>
+<a class="nav-item " href="articles.html"><i class="fa-regular fa-newspaper"></i><span>Articles</span></a>
+<a class="nav-item " href="characters.html"><i class="fa-solid fa-user"></i><span>Characters</span></a>
+<a class="nav-item " href="media.html"><i class="fa-solid fa-photo-film"></i><span>Media</span></a>
+<a class="nav-item " href="merchandise.html"><i class="fa-solid fa-bag-shopping"></i><span>Merchandise</span></a>
+<a class="nav-item " href="events.html"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a>
+<a class="nav-item " href="releases.html"><i class="fa-solid fa-clock"></i><span>Releases</span></a>
+<a class="nav-item " href="submissions.html"><i class="fa-solid fa-inbox"></i><span>Fan Submissions</span></a>
+<a class="nav-item is-active" href="feedback.html"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
+<a class="nav-item " href="bookmarks.html"><i class="fa-regular fa-bookmark"></i><span>Bookmarks</span></a>
+<a class="nav-item " href="chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot FAQ</span></a>
+</div></div>
+<div class="nav-group"><div class="nav-group-label">System</div><div class="nav-list">
+<a class="nav-item " href="profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+<a class="nav-item " href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</div></div>
+</nav>
+<div class="sidebar-foot"><div class="sidebar-user"><span class="avatar avatar-sm">AU</span><div class="user-meta"><span class="user-name">Admin User</span><span class="user-role">Administrator</span></div></div></div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main"><header class="navbar">
+<div class="navbar-left"><button class="navbar-toggle icon-btn" id="sidebarToggle" type="button"><i class="fa-solid fa-bars"></i></button><span class="navbar-title">Feedback</span></div>
+<div class="navbar-search" id="adminGlobalSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearchInput" placeholder="Search..." type="search" autocomplete="off"><kbd>⌘K</kbd><div class="global-search-results" id="globalSearchResults" hidden></div></div>
+<div class="navbar-right"><a class="icon-btn" href="notifications.html" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a><form style="display:inline" data-static="1" data-action="admin.logout"><button class="icon-btn" type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button></form></div>
+</header><section class="content">
+
+
+
+
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="dashboard.html">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span>Feedback</span>
+</nav>
+
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Feedback</h2>
+    <p class="page-sub">Bug reports, suggestions, and user queries.</p>
+  </div>
+</div>
+
+<!-- stat strip -->
+<section class="mini-stats">
+  <div class="mini-stat">
+    <span class="mini-stat-label">Open</span>
+    <span class="mini-stat-value warn">5</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Resolved</span>
+    <span class="mini-stat-value ok">3</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">Bugs</span>
+    <span class="mini-stat-value danger">3</span>
+  </div>
+  <div class="mini-stat">
+    <span class="mini-stat-label">This week</span>
+    <span class="mini-stat-value">8</span>
+  </div>
+</section>
+
+<div class="filters-bar">
+  <div class="filter-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="feedbackSearch" placeholder="Search by subject or user...">
+  </div>
+  <select class="input filter-select" id="typeFilter">
+    <option value="">All types</option>
+    <option value="bug">Bug</option>
+    <option value="suggestion">Suggestion</option>
+    <option value="query">Query</option>
+  </select>
+  <select class="input filter-select" id="statusFilter">
+    <option value="">All status</option>
+    <option value="open">Open</option>
+    <option value="resolved">Resolved</option>
+  </select>
+</div>
+
+<div class="panel">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Subject</th>
+          <th>User</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody id="feedbackTableBody">
+                  <tr data-subject="the notifications page does not load on mobile safari."
+              data-user="aria stark"
+              data-type="bug"
+              data-status="open">
+            <td>
+              <span class="type-icon tone-danger">
+                <i class="fa-solid fa-bug"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-1.html" class="feedback-subject">
+                The notifications page does not load on mobile Safari.
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td><span class="status-badge warn">Open</span></td>
+            <td><span class="date-txt">Oct 18, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-1.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="please add a dark/light theme toggle to the profile page."
+              data-user="test user"
+              data-type="suggestion"
+              data-status="open">
+            <td>
+              <span class="type-icon tone-warn">
+                <i class="fa-solid fa-lightbulb"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-2.html" class="feedback-subject">
+                Please add a dark/light theme toggle to the profile page.
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td><span class="status-badge warn">Open</span></td>
+            <td><span class="date-txt">Oct 17, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-2.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="how do i submit a fan article for review?"
+              data-user="geralt rivia"
+              data-type="query"
+              data-status="resolved">
+            <td>
+              <span class="type-icon tone-info">
+                <i class="fa-solid fa-circle-question"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-3.html" class="feedback-subject">
+                How do I submit a fan article for review?
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">GR</span>
+                <span>Geralt Rivia</span>
+              </div>
+            </td>
+            <td><span class="status-badge ok">Resolved</span></td>
+            <td><span class="date-txt">Oct 15, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-3.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="could you add more filters to the events calendar?"
+              data-user="mikasa ackerman"
+              data-type="suggestion"
+              data-status="open">
+            <td>
+              <span class="type-icon tone-warn">
+                <i class="fa-solid fa-lightbulb"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-4.html" class="feedback-subject">
+                Could you add more filters to the events calendar?
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">MA</span>
+                <span>Mikasa Ackerman</span>
+              </div>
+            </td>
+            <td><span class="status-badge warn">Open</span></td>
+            <td><span class="date-txt">Oct 14, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-4.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="the character page sometimes shows a blank image."
+              data-user="lisa manoban"
+              data-type="bug"
+              data-status="resolved">
+            <td>
+              <span class="type-icon tone-danger">
+                <i class="fa-solid fa-bug"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-5.html" class="feedback-subject">
+                The character page sometimes shows a blank image.
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">LM</span>
+                <span>Lisa Manoban</span>
+              </div>
+            </td>
+            <td><span class="status-badge ok">Resolved</span></td>
+            <td><span class="date-txt">Oct 13, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-5.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="a weekly newsletter with new releases would be great."
+              data-user="ken kaneki"
+              data-type="suggestion"
+              data-status="open">
+            <td>
+              <span class="type-icon tone-warn">
+                <i class="fa-solid fa-lightbulb"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-6.html" class="feedback-subject">
+                A weekly newsletter with new releases would be great.
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">KK</span>
+                <span>Ken Kaneki</span>
+              </div>
+            </td>
+            <td><span class="status-badge warn">Open</span></td>
+            <td><span class="date-txt">Oct 11, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-6.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="can i change the email address on my account?"
+              data-user="jinx powder"
+              data-type="query"
+              data-status="resolved">
+            <td>
+              <span class="type-icon tone-info">
+                <i class="fa-solid fa-circle-question"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-7.html" class="feedback-subject">
+                Can I change the email address on my account?
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">JP</span>
+                <span>Jinx Powder</span>
+              </div>
+            </td>
+            <td><span class="status-badge ok">Resolved</span></td>
+            <td><span class="date-txt">Oct 10, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-7.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="search suggestions overlap the navigation on small screens."
+              data-user="peter parker"
+              data-type="bug"
+              data-status="open">
+            <td>
+              <span class="type-icon tone-danger">
+                <i class="fa-solid fa-bug"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-8.html" class="feedback-subject">
+                Search suggestions overlap the navigation on small screens.
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">PP</span>
+                <span>Peter Parker</span>
+              </div>
+            </td>
+            <td><span class="status-badge warn">Open</span></td>
+            <td><span class="date-txt">Oct 09, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-8.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="add a &quot;continue watching&quot; section to the dashboard."
+              data-user="aria stark"
+              data-type="suggestion"
+              data-status="open">
+            <td>
+              <span class="type-icon tone-warn">
+                <i class="fa-solid fa-lightbulb"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-9.html" class="feedback-subject">
+                Add a &quot;Continue watching&quot; section to the dashboard.
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">AS</span>
+                <span>Aria Stark</span>
+              </div>
+            </td>
+            <td><span class="status-badge warn">Open</span></td>
+            <td><span class="date-txt">Oct 07, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-9.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+                  <tr data-subject="is there an app version of fan hub plus planned?"
+              data-user="test user"
+              data-type="query"
+              data-status="resolved">
+            <td>
+              <span class="type-icon tone-info">
+                <i class="fa-solid fa-circle-question"></i>
+              </span>
+            </td>
+            <td>
+              <a href="feedback-view-10.html" class="feedback-subject">
+                Is there an app version of Fan Hub Plus planned?
+              </a>
+            </td>
+            <td>
+              <div class="user-mini">
+                <span class="avatar avatar-xs">TU</span>
+                <span>Test User</span>
+              </div>
+            </td>
+            <td><span class="status-badge ok">Resolved</span></td>
+            <td><span class="date-txt">Oct 05, 2026</span></td>
+            <td class="row-actions">
+              <a href="feedback-view-10.html" class="icon-btn" aria-label="View">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+              <form style="display:inline" onsubmit="return confirm('Delete this feedback?')" data-static="1" data-action="admin.feedback.delete">
+                
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="icon-btn danger" type="submit" aria-label="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+              </tbody>
+    </table>
+  </div>
+
+  <div class="empty hide" id="noResults">
+    <i class="fa-regular fa-comment-dots"></i>
+    <p>No feedback matches your filters.</p>
+  </div>
+
+  <div class="pagination">
+    <span class="page-info">Showing <strong>1–8</strong> of <strong>48</strong></span>
+    <div class="page-controls">
+      <button class="page-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="page-btn is-active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+</section></main></div>
+<script src="assets/js/admin-core.js"></script><script src="assets/js/admin-navigation.js"></script><script src="assets/js/admin-sidebar.js"></script>
+<script src="assets/js/page-feedback.js"></script>
+</body></html>
